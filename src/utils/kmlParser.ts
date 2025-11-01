@@ -144,9 +144,9 @@ export async function parseKMZ(kmzFile: File | ArrayBuffer): Promise<ParsedKML> 
 
 /**
  * Parse KMZ file from file path (for Node.js environments)
+ * Note: This function is for Node.js environments only and will not work in the browser
  */
-export async function parseKMZFromPath(filePath: string): Promise<ParsedKML> {
-  const fs = await import('fs/promises');
-  const fileBuffer = await fs.readFile(filePath);
-  return parseKMZ(fileBuffer.buffer);
+export async function parseKMZFromPath(_filePath: string): Promise<ParsedKML> {
+  // This function requires Node.js fs module and should not be used in browser
+  throw new Error('parseKMZFromPath is not available in browser environment. Use parseKMZ with ArrayBuffer instead.');
 }

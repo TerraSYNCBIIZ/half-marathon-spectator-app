@@ -147,7 +147,7 @@ export async function fetchCharlotteMarathonData(): Promise<CharlotteMarathonDat
 /**
  * Helper function to extract data from HTML (for future use)
  */
-export function parseHTML(html: string): Partial<CharlotteMarathonData> {
+export function parseHTML(_html: string): Partial<CharlotteMarathonData> {
   // Placeholder for HTML parsing logic
   // Would use cheerio or similar in a Node.js environment
   return {};

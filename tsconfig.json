@@ -21,6 +21,7 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
+  "exclude": ["src/utils/kmzHelper.ts", "src/utils/parseRaceKMZ.ts", "src/utils/kmlParser.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
 

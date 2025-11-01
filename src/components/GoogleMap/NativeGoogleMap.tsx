@@ -1,10 +1,10 @@
-import { useMemo, useState, useCallback, useEffect } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import { GoogleMap, LoadScript, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
 import { GOOGLE_MAPS_API_KEY, DEFAULT_CENTER, DEFAULT_ZOOM, MAP_STYLES } from '../../config/googleMaps';
 import { useKMLData, KMLPlacemark } from '../../hooks/useKMLData';
 import { spectatorSpots } from '../../data/raceData';
 import MapSidebar from '../Map/MapSidebar';
-import { getMarkerIconInfo, createMarkerIcon, getMarkerCategory } from '../../utils/markerIcons';
+import { createMarkerIcon, getMarkerCategory } from '../../utils/markerIcons';
 import './kmlStyles.css';
 
 interface NativeGoogleMapProps {
@@ -18,7 +18,6 @@ interface NativeGoogleMapProps {
 const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
   center = DEFAULT_CENTER,
   zoom = DEFAULT_ZOOM,
-  selectedSpotId,
   onMarkerClick,
   onSpectatorSpotClick,
 }) => {

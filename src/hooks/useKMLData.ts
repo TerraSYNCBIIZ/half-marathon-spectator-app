@@ -131,7 +131,6 @@ export function useKMLData(kmlUrl: string) {
 
           // Check if it's a point (marker) or linestring (route)
           const point = placemark.getElementsByTagName('Point')[0];
-          const lineString = placemark.getElementsByTagName('LineString')[0];
 
           if (point) {
             const coordsText = point.getElementsByTagName('coordinates')[0]?.textContent?.trim();

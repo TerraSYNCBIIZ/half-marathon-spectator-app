@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import { spectatorSpots, raceInfo } from '../data/raceData';
 import { SpotTiming } from '../types';
 import Card from '../components/ui/Card';
-import Input from '../components/ui/Input';
 import { Clock } from 'lucide-react';
 
 const TimingCalculatorPage = () => {
-  const runnerName = 'Rachel';
   const [estimatedPace, setEstimatedPace] = useState<number>(10);
   const [startTime] = useState(raceInfo.startTime);
   const [spotTimings, setSpotTimings] = useState<SpotTiming[]>([]);
