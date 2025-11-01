@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply bg-[#F9FAFB] text-[#1F2937];
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+    /* Prevent pull-to-refresh on mobile */
+    overscroll-behavior-y: none;
+  }
+  
+  h1 {
+    @apply text-[2.25rem] leading-[2.5rem] font-bold text-[#1F2937];
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h2 {
+    @apply text-[1.875rem] leading-[2.25rem] font-bold text-[#1F2937];
+    font-family: 'Inter', sans-serif;
+  }
+  
+  p {
+    @apply text-[1rem] leading-[1.5rem] text-[#1F2937];
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Safe area for notched devices */
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#5e6ad2] text-white px-6 py-3 rounded-[0.5rem] font-semibold 
+           hover:bg-[#4f5bc7] transition-all duration-200 shadow-md
+           active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#5e6ad2] focus:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .btn-secondary {
+    @apply bg-white border-2 border-[#5e6ad2] text-[#5e6ad2] px-6 py-3 rounded-[0.5rem] font-semibold 
+           hover:bg-[#f3f4f6] transition-all duration-200 active:scale-95
+           focus:outline-none focus:ring-2 focus:ring-[#5e6ad2] focus:ring-offset-2
+           disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .card {
+    @apply bg-white rounded-[0.75rem] shadow-md p-6 border border-gray-100;
+  }
+
+  /* Subtle bounce animation for active nav items */
+  @keyframes bounce-subtle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+  
+  .animate-bounce-subtle {
+    animation: bounce-subtle 0.3s ease-in-out;
+  }
+}

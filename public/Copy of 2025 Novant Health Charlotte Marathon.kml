@@ -1,0 +1,3045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Copy of 2025 Novant Health Charlotte Marathon </name>
+    <description/>
+    <Style id="icon-1624-E65100-nodesc-normal">
+      <IconStyle>
+        <color>ff0051e6</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1624-E65100-nodesc-highlight">
+      <IconStyle>
+        <color>ff0051e6</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1624-E65100-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1624-E65100-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1624-E65100-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1637-9C27B0-nodesc-normal">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1637-9C27B0-nodesc-highlight">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1637-9C27B0-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1637-9C27B0-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1637-9C27B0-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1680-000000-normal">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1680-000000-highlight">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1680-000000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1680-000000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1680-000000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1680-9C27B0-normal">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1680-9C27B0-highlight">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1680-9C27B0">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1680-9C27B0-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1680-9C27B0-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1680-C2185B-normal">
+      <IconStyle>
+        <color>ff5b18c2</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1680-C2185B-highlight">
+      <IconStyle>
+        <color>ff5b18c2</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1680-C2185B">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1680-C2185B-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1680-C2185B-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1680-FFD600-normal">
+      <IconStyle>
+        <color>ff00d6ff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1680-FFD600-highlight">
+      <IconStyle>
+        <color>ff00d6ff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1680-FFD600">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1680-FFD600-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1680-FFD600-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1703-0288D1-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1703-0288D1-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1703-0288D1">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1703-0288D1-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1703-0288D1-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1893-E65100-nodesc-normal">
+      <IconStyle>
+        <color>ff0051e6</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1893-E65100-nodesc-highlight">
+      <IconStyle>
+        <color>ff0051e6</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1893-E65100-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1893-E65100-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1893-E65100-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-0288D1-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-0288D1-nodesc-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-nodesc-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-0F9D58-nodesc-normal">
+      <IconStyle>
+        <color>ff589d0f</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1899-0F9D58-nodesc-highlight">
+      <IconStyle>
+        <color>ff589d0f</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1899-0F9D58-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0F9D58-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0F9D58-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-9C27B0-normal">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-9C27B0-highlight">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-9C27B0">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-9C27B0-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-9C27B0-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-9C27B0-nodesc-normal">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1899-9C27B0-nodesc-highlight">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1899-9C27B0-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-9C27B0-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-9C27B0-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1899-DB4436-nodesc-normal">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1899-DB4436-nodesc-highlight">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1899-DB4436-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-DB4436-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-DB4436-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-9C27B0-4000-nodesc-normal">
+      <LineStyle>
+        <color>ffb0279c</color>
+        <width>4</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-9C27B0-4000-nodesc-highlight">
+      <LineStyle>
+        <color>ffb0279c</color>
+        <width>6</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-9C27B0-4000-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-9C27B0-4000-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-9C27B0-4000-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-F9A825-5650-nodesc-normal">
+      <LineStyle>
+        <color>ff25a8f9</color>
+        <width>5.65</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-F9A825-5650-nodesc-highlight">
+      <LineStyle>
+        <color>ff25a8f9</color>
+        <width>8.475</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-F9A825-5650-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-F9A825-5650-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-F9A825-5650-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-FF0000-4000-nodesc-normal">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>4</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-FF0000-4000-nodesc-highlight">
+      <LineStyle>
+        <color>ff0000ff</color>
+        <width>6</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-FF0000-4000-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-FF0000-4000-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-FF0000-4000-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>2025 Novant Health Charlotte Marathon</name>
+      <Placemark>
+        <name>Start Line </name>
+        <description>7:20am</description>
+        <styleUrl>#icon-1899-9C27B0</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8480079,35.223853,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Finish Line </name>
+        <styleUrl>#icon-1899-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.847348,35.228991,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Medical Tent</name>
+        <styleUrl>#icon-1624-E65100-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8468257,35.2284276,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Bag Check </name>
+        <styleUrl>#icon-1899-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8488558,35.227238,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Solutions & Will Call ]]></name>
+        <styleUrl>#icon-1899-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8487496,35.2273401,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Team Hemby Finish Line Lounge </name>
+        <description>Team Hemby</description>
+        <styleUrl>#icon-1899-9C27B0</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8476398,35.2273697,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[Main Stage & Awards ]]></name>
+        <styleUrl>#icon-1899-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8481801,35.2272759,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Expo </name>
+        <description>Charlotte Convention Center - Friday 11-15-24, 10am-7pm </description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8461108,35.2225567,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Volunteer Check In </name>
+        <styleUrl>#icon-1899-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8488009,35.2272997,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Corral A</name>
+        <styleUrl>#icon-1899-0F9D58-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8478792,35.2238998,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Corral B</name>
+        <styleUrl>#icon-1899-0F9D58-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8477156,35.2240313,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Corral C</name>
+        <styleUrl>#icon-1899-0F9D58-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8475413,35.2241474,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Corral D</name>
+        <styleUrl>#icon-1899-0F9D58-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8473401,35.224292,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Corral E</name>
+        <styleUrl>#icon-1899-0F9D58-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8469431,35.2245637,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Corral F</name>
+        <styleUrl>#icon-1899-0F9D58-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8465328,35.2248442,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Corral G</name>
+        <styleUrl>#icon-1899-0F9D58-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8460902,35.2251498,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Corral H</name>
+        <styleUrl>#icon-1899-0F9D58-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.845535,35.2255201,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Rucker Weigh In </name>
+        <styleUrl>#icon-1893-E65100-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8455482,35.2252649,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Mile Markers</name>
+      <Placemark>
+        <name>1 mile</name>
+        <description><![CDATA[description: New Mile 1<br>Latitude, Longitude: <br>Plus Code: 65F5+9JX Charlotte, North Carolina<br>Address (if available): ]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 1</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>65F5+9JX Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8407118,35.2233356,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2 mile</name>
+        <description><![CDATA[description: New Mile 2<br>Latitude, Longitude: <br>Plus Code: 657C+8Q6 Charlotte, North Carolina<br>Address (if available): 1520 E 4th Street]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 2</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>657C+8Q6 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>1520 E 4th Street</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8281072,35.2132552,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3 mile</name>
+        <description><![CDATA[description: New Mile 3<br>Latitude, Longitude: <br>Plus Code: 652J+JJW Charlotte, North Carolina<br>Address (if available): 245 Coville Rd]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 3</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>652J+JJW Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>245 Coville Rd</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8184291,35.2016506,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4 mile</name>
+        <description><![CDATA[description: New Mile 4<br>Latitude, Longitude: <br>Plus Code: 55QJ+38R Charlotte, North Carolina<br>Address (if available): 1509 Scotland Ave]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 4</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>55QJ+38R Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>1509 Scotland Ave</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8192514,35.1878235,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5 mile</name>
+        <description><![CDATA[description: New Mile 5<br>Latitude, Longitude: <br>Plus Code: 55RF+MMP Charlotte, North Carolina<br>Address (if available): 2538 Hampton Ave]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 5</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>55RF+MMP Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>2538 Hampton Ave</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8256532,35.1916619,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6 mile</name>
+        <description><![CDATA[description: New Mile 6<br>Latitude, Longitude: <br>Plus Code: 55J8+QR6 Charlotte, North Carolina<br>Address (if available): 2308 Queens Rd E]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 6</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>55J8+QR6 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>2308 Queens Rd E</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8330284,35.1819421,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>7 mile</name>
+        <description><![CDATA[description: New Mile 7<br>Latitude, Longitude: <br>Plus Code: 55R6+CW3 Charlotte, North Carolina<br>Address (if available): 1555 Queens Rd W]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 7</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>55R6+CW3 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>1555 Queens Rd W</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8378011,35.1909492,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8 mile</name>
+        <description><![CDATA[description: New Mile 8<br>Latitude, Longitude: <br>Plus Code: 6547+2GF Charlotte, North Carolina<br>Address (if available): 1426 E Morehead St]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 8</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>6547+2GF Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>1426 E Morehead St</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8362081,35.2050297,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>9 mile</name>
+        <description><![CDATA[description: New Mile 9<br>Latitude, Longitude: <br>Plus Code: 6543+Q2G Charlotte, North Carolina<br>Address (if available): 916 E Park Ave]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 9</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>6543+Q2G Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>916 E Park Ave</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8474809,35.2069958,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>10 mile</name>
+        <description><![CDATA[description: New Mile 10<br>Latitude, Longitude: <br>Plus Code: 6574+C5M Charlotte, North Carolina<br>Address (if available): old Art's Deli]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>New Mile 10</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value>6574+C5M Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value><![CDATA[old Art's Deli]]></value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8445679,35.2136283,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>11 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.216729, -80.855477<br>Plus Code: 648V+MR Charlotte, North Carolina<br>Address (if available): 1423 S Tryon St<br>Latitude, Longitude: 35.216729, -80.855477<br>Plus Code: 648V+MR Charlotte, North Carolina<br>Address (if available): 1423 S Tryon St]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.216729, -80.855477
+Plus Code: 648V+MR Charlotte, North Carolina
+Address (if available): 1423 S Tryon St</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.216729, -80.855477</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>648V+MR Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>1423 S Tryon St</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.855477,35.216729,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>12 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.219605, -80.859851<br>Plus Code: 649R+V2 Charlotte, North Carolina<br>Address (if available): S Mint St before Winona<br>Latitude, Longitude: 35.219605, -80.859851<br>Plus Code: 649R+V2 Charlotte, North Carolina<br>Address (if available): S Mint St before Winona]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.219605, -80.859851
+Plus Code: 649R+V2 Charlotte, North Carolina
+Address (if available): S Mint St before Winona</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.219605, -80.859851</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>649R+V2 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>S Mint St before Winona</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.859851,35.219605,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>13 mile(H)</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.228567, -80.849674<br>Plus Code: 65H2+C4 Charlotte, North Carolina<br>Address (if available):<br>Latitude, Longitude: 35.228567, -80.849674<br>Plus Code: 65H2+C4 Charlotte, North Carolina<br>Address (if available): ]]></description>
+        <styleUrl>#icon-1680-FFD600</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.228567, -80.849674
+Plus Code: 65H2+C4 Charlotte, North Carolina
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.228567, -80.849674</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65H2+C4 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8489686,35.229187,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>13 mile(M)</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.222059, -80.846959<br>Plus Code: 65C3+R6 Charlotte, North Carolina<br>Address (if available): E Stonewall in front of Westin<br>Latitude, Longitude: 35.222059, -80.846959<br>Plus Code: 65C3+R6 Charlotte, North Carolina<br>Address (if available): E Stonewall in front of Westin]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.222059, -80.846959
+Plus Code: 65C3+R6 Charlotte, North Carolina
+Address (if available): E Stonewall in front of Westin</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.222059, -80.846959</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65C3+R6 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>E Stonewall in front of Westin</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8470797,35.2222124,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>13.1 mile</name>
+        <description><![CDATA[description: half marathon of full course<br>Latitude, Longitude: <br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1680-C2185B</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>half marathon of full course</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value/>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8457456,35.2210549,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>14 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.227497, -80.833619<br>Plus Code: 65G8+XH Charlotte, North Carolina<br>Address (if available): N Caldwell St and E 9th St<br>Latitude, Longitude: 35.227497, -80.833619<br>Plus Code: 65G8+XH Charlotte, North Carolina<br>Address (if available): N Caldwell St and E 9th St]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.227497, -80.833619
+Plus Code: 65G8+XH Charlotte, North Carolina
+Address (if available): N Caldwell St and E 9th St</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.227497, -80.833619</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65G8+XH Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>N Caldwell St and E 9th St</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.833619,35.227497,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>15 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.232315, -80.822816<br>Plus Code: 65JG+WV Charlotte, North Carolina<br>Address (if available): Little Sugar Creek Greenway and N Alexander<br>Latitude, Longitude: 35.232315, -80.822816<br>Plus Code: 65JG+WV Charlotte, North Carolina<br>Address (if available): Little Sugar Creek Greenway and N Alexander]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.232315, -80.822816
+Plus Code: 65JG+WV Charlotte, North Carolina
+Address (if available): Little Sugar Creek Greenway and N Alexander</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.232315, -80.822816</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65JG+WV Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>Little Sugar Creek Greenway and N Alexander</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.822816,35.232315,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>16 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.242929, -80.811167<br>Plus Code: 65VQ+5G Charlotte, North Carolina<br>Address (if available): N Davidson St near Neese Sausage<br>Latitude, Longitude: 35.242929, -80.811167<br>Plus Code: 65VQ+5G Charlotte, North Carolina<br>Address (if available): N Davidson St near Neese Sausage]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.242929, -80.811167
+Plus Code: 65VQ+5G Charlotte, North Carolina
+Address (if available): N Davidson St near Neese Sausage</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.242929, -80.811167</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65VQ+5G Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>N Davidson St near Neese Sausage</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.811167,35.242929,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>17 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.242429, -80.798325<br>Plus Code: 66R2+XM Charlotte, North Carolina<br>Address (if available): 1121 E 36th St<br>Latitude, Longitude: 35.242429, -80.798325<br>Plus Code: 66R2+XM Charlotte, North Carolina<br>Address (if available): 1121 E 36th St]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.242429, -80.798325
+Plus Code: 66R2+XM Charlotte, North Carolina
+Address (if available): 1121 E 36th St</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.242429, -80.798325</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>66R2+XM Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>1121 E 36th St</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.798325,35.242429,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>18 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.2324247, -80.807962<br>Plus Code: 65JR+XR Charlotte, North Carolina<br>Address (if available): The Plaza and Mecklenburg Ave<br>Latitude, Longitude: 35.2324247, -80.807962<br>Plus Code: 65JR+XR Charlotte, North Carolina<br>Address (if available): The Plaza and Mecklenburg Ave]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.2324247, -80.807962
+Plus Code: 65JR+XR Charlotte, North Carolina
+Address (if available): The Plaza and Mecklenburg Ave</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.2324247, -80.807962</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65JR+XR Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>The Plaza and Mecklenburg Ave</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.807962,35.232425,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>19 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.220424, -80.813546<br>Plus Code: 65CP+5H Charlotte, North Carolina<br>Address (if available): Fuel Pizza on Central Ave<br>Latitude, Longitude: 35.220424, -80.813546<br>Plus Code: 65CP+5H Charlotte, North Carolina<br>Address (if available): Fuel Pizza on Central Ave]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.220424, -80.813546
+Plus Code: 65CP+5H Charlotte, North Carolina
+Address (if available): Fuel Pizza on Central Ave</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.220424, -80.813546</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65CP+5H Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>Fuel Pizza on Central Ave</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.813546,35.220424,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>20 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.232302, -80.8079888<br>Plus Code: 65JR+XR Charlotte, North Carolina<br>Address (if available): The Plaza and Mecklenburg Ave<br>Latitude, Longitude: 35.232302, -80.8079888<br>Plus Code: 65JR+XR Charlotte, North Carolina<br>Address (if available): The Plaza and Mecklenburg Ave]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.232302, -80.8079888
+Plus Code: 65JR+XR Charlotte, North Carolina
+Address (if available): The Plaza and Mecklenburg Ave</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.232302, -80.8079888</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65JR+XR Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>The Plaza and Mecklenburg Ave</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.807989,35.232302,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>21 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.242326, -80.800400<br>Plus Code: 65RX+WR Charlotte, North Carolina<br>Address (if available): 1024 E 35th St<br>Latitude, Longitude: 35.242326, -80.800400<br>Plus Code: 65RX+WR Charlotte, North Carolina<br>Address (if available): 1024 E 35th St]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.242326, -80.800400
+Plus Code: 65RX+WR Charlotte, North Carolina
+Address (if available): 1024 E 35th St</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.242326, -80.800400</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65RX+WR Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>1024 E 35th St</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8004,35.242326,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>22 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.241411, -80.812752<br>Plus Code: 65RP+HV Charlotte, North Carolina<br>Address (if available): Amelie's on N Davidson St<br>Latitude, Longitude: 35.241411, -80.812752<br>Plus Code: 65RP+HV Charlotte, North Carolina<br>Address (if available): Amelie's on N Davidson St]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value><![CDATA[Latitude, Longitude: 35.241411, -80.812752
+Plus Code: 65RP+HV Charlotte, North Carolina
+Address (if available): Amelie's on N Davidson St]]></value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.241411, -80.812752</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65RP+HV Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value><![CDATA[Amelie's on N Davidson St]]></value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.812752,35.241411,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>23 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.232435, -80.822438<br>Plus Code: 65JH+X2 Charlotte, North Carolina<br>Address (if available): Little Sugar Creek Greenway and N Alexander<br>Latitude, Longitude: 35.232435, -80.822438<br>Plus Code: 65JH+X2 Charlotte, North Carolina<br>Address (if available): Little Sugar Creek Greenway and N Alexander]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.232435, -80.822438
+Plus Code: 65JH+X2 Charlotte, North Carolina
+Address (if available): Little Sugar Creek Greenway and N Alexander</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.232435, -80.822438</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65JH+X2 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>Little Sugar Creek Greenway and N Alexander</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.822438,35.232435,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>24 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.224853, -80.828774<br>Plus Code: 65FC+WF Charlotte, North Carolina<br>Address (if available): N McDowell under I 277<br>Latitude, Longitude: 35.224853, -80.828774<br>Plus Code: 65FC+WF Charlotte, North Carolina<br>Address (if available): N McDowell under I 277]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.224853, -80.828774
+Plus Code: 65FC+WF Charlotte, North Carolina
+Address (if available): N McDowell under I 277</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.224853, -80.828774</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65FC+WF Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>N McDowell under I 277</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.828774,35.224853,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>25 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.219810, -80.841693<br>Plus Code: 6595+W8 Charlotte, North Carolina<br>Address (if available): MLK before N Davidson by Metro School<br>Latitude, Longitude: 35.219810, -80.841693<br>Plus Code: 6595+W8 Charlotte, North Carolina<br>Address (if available): MLK before N Davidson by Metro School]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.219810, -80.841693
+Plus Code: 6595+W8 Charlotte, North Carolina
+Address (if available): MLK before N Davidson by Metro School</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.219810, -80.841693</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>6595+W8 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>MLK before N Davidson by Metro School</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.841693,35.21981,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>26 mile</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.228255, -80.850120<br>Plus Code: 64HX+8X Charlotte, North Carolina<br>Address (if available): S Graham St and MLK<br>Latitude, Longitude: 35.228255, -80.850120<br>Plus Code: 64HX+8X Charlotte, North Carolina<br>Address (if available): S Graham St and MLK]]></description>
+        <styleUrl>#icon-1680-000000</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.228255, -80.850120
+Plus Code: 64HX+8X Charlotte, North Carolina
+Address (if available): S Graham St and MLK</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.228255, -80.850120</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>64HX+8X Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>S Graham St and MLK</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.85012,35.228255,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>1 mile (5K)</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.2168876, -80.8553816<br>Plus Code: 648V+VX Charlotte, North Carolina<br>Address (if available):<br>Latitude, Longitude: 35.2168876, -80.8553816<br>Plus Code: 648V+VX Charlotte, North Carolina<br>Address (if available): ]]></description>
+        <styleUrl>#icon-1680-9C27B0</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.2168876, -80.8553816
+Plus Code: 648V+VX Charlotte, North Carolina
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.2168876, -80.8553816</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>648V+VX Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.855382,35.216888,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2 mile (5K)</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.2195263, -80.8599988<br>Plus Code: 648P+V7 Charlotte, North Carolina<br>Address (if available):<br>Latitude, Longitude: 35.2195263, -80.8599988<br>Plus Code: 648P+V7 Charlotte, North Carolina<br>Address (if available): ]]></description>
+        <styleUrl>#icon-1680-9C27B0</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.2195263, -80.8599988
+Plus Code: 648P+V7 Charlotte, North Carolina
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.2195263, -80.8599988</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>648P+V7 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.859999,35.219526,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3 mile (5K)</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.2285089, -80.8497639<br>Plus Code: 65H2+C4 Charlotte, North Carolina<br>Address (if available): Truist Field near Marathon start<br>Latitude, Longitude: 35.2285089, -80.8497639<br>Plus Code: 65H2+C4 Charlotte, North Carolina<br>Address (if available): Truist Field near Marathon start]]></description>
+        <styleUrl>#icon-1680-9C27B0</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.2285089, -80.8497639
+Plus Code: 65H2+C4 Charlotte, North Carolina
+Address (if available): Truist Field near Marathon start</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.2285089, -80.8497639</value>
+          </Data>
+          <Data name="Plus Code">
+            <value>65H2+C4 Charlotte, North Carolina</value>
+          </Data>
+          <Data name="Address (if available)">
+            <value>Truist Field near Marathon start</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.8490023,35.2291488,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 1</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.212699, -80.827273<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.212699, -80.827273<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.212699, -80.827273
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.212699, -80.827273</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.827273,35.212699,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 2</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.1895005, -80.8199557<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.1895005, -80.8199557<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.1895005, -80.8199557
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.1895005, -80.8199557</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.819956,35.1895,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 3</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.1811956, -80.8342312<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.1811956, -80.8342312<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.1811956, -80.8342312
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.1811956, -80.8342312</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.834231,35.181196,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 4</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.2045696, -80.8359417<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.2045696, -80.8359417<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.2045696, -80.8359417
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.2045696, -80.8359417</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.835942,35.20457,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 5</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.2139858, -80.8448834<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.2139858, -80.8448834<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.2139858, -80.8448834
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.2139858, -80.8448834</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.844883,35.213986,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 6</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.220006, -80.8592317<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.220006, -80.8592317<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.220006, -80.8592317
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.220006, -80.8592317</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.859232,35.220006,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 7</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.224104, -80.8383962<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.224104, -80.8383962<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.224104, -80.8383962
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.224104, -80.8383962</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.838396,35.224104,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 8</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.2414965, -80.8126362<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.2414965, -80.8126362<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.2414965, -80.8126362
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.2414965, -80.8126362</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.812636,35.241496,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 9</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.2323795, -80.8080277<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.2323795, -80.8080277<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.2323795, -80.8080277
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.2323795, -80.8080277</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.808028,35.23238,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Water 10</name>
+        <description><![CDATA[description: Latitude, Longitude: 35.2246096, -80.8293879<br>Plus Code: <br>Address (if available):<br>Latitude, Longitude: 35.2246096, -80.8293879<br>Plus Code: <br>Address (if available): ]]></description>
+        <styleUrl>#icon-1703-0288D1</styleUrl>
+        <ExtendedData>
+          <Data name="description">
+            <value>Latitude, Longitude: 35.2246096, -80.8293879
+Plus Code: 
+Address (if available):</value>
+          </Data>
+          <Data name="Latitude, Longitude">
+            <value>35.2246096, -80.8293879</value>
+          </Data>
+          <Data name="Plus Code">
+            <value/>
+          </Data>
+          <Data name="Address (if available)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            -80.829388,35.22461,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Entertainment </name>
+      <Placemark>
+        <name>Entertainment 1 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8483309,35.2234624,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 2 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8359815,35.2041306,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 3 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8446477,35.2136029,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 4 - DJ</name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.851738,35.2202719,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 5 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8580292,35.2136722,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 6 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8589752,35.220065,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 7 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8506717,35.2258086,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 8 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.843362,35.2221863,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 9 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8368382,35.2251939,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 10 - DJ</name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8261484,35.2311455,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 11 - DJ</name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8227347,35.2322605,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 12 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8165307,35.2384716,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 13 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8112068,35.2426091,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 14 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.7996714,35.2383039,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 15 - DJ </name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8080865,35.2323278,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 16 - DJ</name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8284867,35.2248992,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 17 - DJ</name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8381997,35.2183048,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Entertainment 18- DJ</name>
+        <styleUrl>#icon-1637-9C27B0-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8500349,35.2282747,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>2025 NHCM Second Half Course</name>
+      <Placemark>
+        <name>NHCM 2nd Half 2025</name>
+        <styleUrl>#line-9C27B0-4000-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -80.85072,35.22579,0
+            -80.84988,35.22491,0
+            -80.84943,35.22442,0
+            -80.84851,35.22351,0
+            -80.84757,35.22267,0
+            -80.84735,35.2225,0
+            -80.84597,35.22124,0
+            -80.8456,35.22092,0
+            -80.84545,35.22087,0
+            -80.84534,35.22095,0
+            -80.84411,35.22179,0
+            -80.84351,35.22218,0
+            -80.84338,35.22227,0
+            -80.84332,35.22222,0
+            -80.84326,35.22217,0
+            -80.84307,35.222,0
+            -80.84295,35.22186,0
+            -80.84285,35.22172,0
+            -80.84272,35.22144,0
+            -80.84267,35.22132,0
+            -80.8426,35.22123,0
+            -80.84254,35.22117,0
+            -80.84225,35.22137,0
+            -80.84215,35.22144,0
+            -80.84114,35.22211,0
+            -80.84044,35.22265,0
+            -80.8398,35.22314,0
+            -80.83903,35.2237,0
+            -80.83676,35.2253,0
+            -80.83575,35.22598,0
+            -80.83529,35.22631,0
+            -80.83354,35.22754,0
+            -80.83212,35.22856,0
+            -80.83142,35.22909,0
+            -80.83047,35.22976,0
+            -80.83026,35.22988,0
+            -80.82996,35.23008,0
+            -80.82877,35.23089,0
+            -80.82825,35.23124,0
+            -80.82734,35.23187,0
+            -80.82712,35.23202,0
+            -80.82696,35.23189,0
+            -80.82695,35.23188,0
+            -80.826,35.23104,0
+            -80.8247,35.22991,0
+            -80.82435,35.22962,0
+            -80.82424,35.22956,0
+            -80.82391,35.22978,0
+            -80.82287,35.23052,0
+            -80.82288,35.23057,0
+            -80.82316,35.23081,0
+            -80.82342,35.23103,0
+            -80.82482,35.23225,0
+            -80.82454,35.23246,0
+            -80.82312,35.23348,0
+            -80.82191,35.23434,0
+            -80.8212,35.23484,0
+            -80.8206,35.23528,0
+            -80.8197,35.23595,0
+            -80.81877,35.23662,0
+            -80.8182,35.23713,0
+            -80.81758,35.23766,0
+            -80.8171,35.23805,0
+            -80.8165,35.23851,0
+            -80.81646,35.23848,0
+            -80.81648,35.23846,0
+            -80.81646,35.23848,0
+            -80.8165,35.23851,0
+            -80.81602,35.23889,0
+            -80.81532,35.23943,0
+            -80.81279,35.24138,0
+            -80.81225,35.24179,0
+            -80.81174,35.24221,0
+            -80.81153,35.24238,0
+            -80.8113,35.24261,0
+            -80.81116,35.24279,0
+            -80.81105,35.243,0
+            -80.81083,35.24367,0
+            -80.81071,35.24392,0
+            -80.81059,35.24407,0
+            -80.81046,35.2442,0
+            -80.81023,35.24437,0
+            -80.80961,35.24474,0
+            -80.80912,35.245,0
+            -80.8084934,35.2454777,0
+            -80.8070598,35.2462802,0
+            -80.8062204,35.2467549,0
+            -80.80472,35.24756,0
+            -80.80458,35.24764,0
+            -80.80454,35.2476,0
+            -80.80429,35.24739,0
+            -80.80308,35.24635,0
+            -80.80136,35.24491,0
+            -80.80072,35.24436,0
+            -80.80002,35.24378,0
+            -80.79926,35.24314,0
+            -80.79879,35.24275,0
+            -80.79725,35.24143,0
+            -80.7968,35.24106,0
+            -80.79687,35.24096,0
+            -80.79689,35.2409,0
+            -80.79711,35.24066,0
+            -80.79766,35.24006,0
+            -80.7984,35.23934,0
+            -80.79858,35.23917,0
+            -80.79867,35.23914,0
+            -80.79969,35.23814,0
+            -80.80015,35.23771,0
+            -80.80042,35.23751,0
+            -80.80104,35.23719,0
+            -80.8012,35.23708,0
+            -80.80275,35.23641,0
+            -80.80349,35.236,0
+            -80.80452,35.23539,0
+            -80.80491,35.23516,0
+            -80.80512,35.23509,0
+            -80.80547,35.23486,0
+            -80.80579,35.23462,0
+            -80.80661,35.23392,0
+            -80.80717,35.23335,0
+            -80.80749,35.23312,0
+            -80.8078,35.23293,0
+            -80.80793,35.23287,0
+            -80.80797,35.23286,0
+            -80.80794,35.23277,0
+            -80.80797,35.23254,0
+            -80.81001,35.22439,0
+            -80.81019,35.22368,0
+            -80.81032,35.22297,0
+            -80.81091,35.22055,0
+            -80.81095,35.22033,0
+            -80.81095,35.2203,0
+            -80.81118,35.22031,0
+            -80.81132,35.22032,0
+            -80.81239,35.22037,0
+            -80.81359,35.22043,0
+            -80.81347,35.22084,0
+            -80.81266,35.22362,0
+            -80.81262,35.22378,0
+            -80.81258,35.22426,0
+            -80.81254,35.22448,0
+            -80.81251,35.22464,0
+            -80.81249,35.22469,0
+            -80.81195,35.22655,0
+            -80.81192,35.22661,0
+            -80.81187,35.22666,0
+            -80.81176,35.22667,0
+            -80.81074,35.22649,0
+            -80.81063,35.22707,0
+            -80.8099,35.22994,0
+            -80.80981,35.23029,0
+            -80.80909,35.23018,0
+            -80.80909,35.23017,0
+            -80.80859,35.23009,0
+            -80.80832,35.23119,0
+            -80.80799,35.23248,0
+            -80.80796,35.2326,0
+            -80.80794,35.23277,0
+            -80.80797,35.23286,0
+            -80.80793,35.23287,0
+            -80.8078,35.23293,0
+            -80.80749,35.23312,0
+            -80.80717,35.23335,0
+            -80.80689,35.23364,0
+            -80.80661,35.23392,0
+            -80.80647,35.23404,0
+            -80.80579,35.23462,0
+            -80.80547,35.23486,0
+            -80.80512,35.23509,0
+            -80.80491,35.23516,0
+            -80.80402,35.23569,0
+            -80.80308,35.23623,0
+            -80.80275,35.23641,0
+            -80.80241,35.23656,0
+            -80.8012,35.23708,0
+            -80.80104,35.23719,0
+            -80.80042,35.23751,0
+            -80.80024,35.23763,0
+            -80.79992,35.23791,0
+            -80.79867,35.23914,0
+            -80.79858,35.23917,0
+            -80.7984,35.23934,0
+            -80.79812,35.23962,0
+            -80.79766,35.24007,0
+            -80.79777,35.24016,0
+            -80.80214,35.24383,0
+            -80.8038,35.24523,0
+            -80.80436,35.24573,0
+            -80.80456,35.24592,0
+            -80.8051734,35.2463961,0
+            -80.8055405,35.2461703,0
+            -80.8057493,35.2460388,0
+            -80.8060595,35.2458436,0
+            -80.806532,35.2455575,0
+            -80.8074246,35.2450185,0
+            -80.8081718,35.2445939,0
+            -80.8086905,35.244295,0
+            -80.8091629,35.2440712,0
+            -80.8092989,35.2439514,0
+            -80.8094468,35.2434412,0
+            -80.8094944,35.2432361,0
+            -80.8105949,35.243408,0
+            -80.8107821,35.2434551,0
+            -80.8108917,35.2434849,0
+            -80.81099,35.2432,0
+            -80.81111,35.24289,0
+            -80.81125,35.24267,0
+            -80.81143,35.24248,0
+            -80.81178,35.24217,0
+            -80.81232,35.24174,0
+            -80.81287,35.24132,0
+            -80.81541,35.23935,0
+            -80.81609,35.23883,0
+            -80.8165,35.23851,0
+            -80.81646,35.23848,0
+            -80.81679,35.23822,0
+            -80.81708,35.238,0
+            -80.81719,35.23789,0
+            -80.81739,35.23775,0
+            -80.81755,35.23759,0
+            -80.81761,35.23752,0
+            -80.81767,35.23738,0
+            -80.81778,35.237,0
+            -80.81781,35.23682,0
+            -80.81783,35.23677,0
+            -80.81789,35.23668,0
+            -80.818,35.23654,0
+            -80.81812,35.23645,0
+            -80.81824,35.23638,0
+            -80.81859,35.23626,0
+            -80.8188,35.23619,0
+            -80.81918,35.236,0
+            -80.81933,35.23585,0
+            -80.81971,35.23548,0
+            -80.81988,35.23522,0
+            -80.82002,35.23508,0
+            -80.82043,35.23464,0
+            -80.82056,35.23452,0
+            -80.82065,35.23445,0
+            -80.8207,35.23438,0
+            -80.82072,35.23429,0
+            -80.82071,35.23426,0
+            -80.82075,35.23424,0
+            -80.82082,35.23419,0
+            -80.82092,35.23418,0
+            -80.82114,35.23411,0
+            -80.8213,35.23403,0
+            -80.82148,35.23392,0
+            -80.82171,35.23368,0
+            -80.8221,35.23344,0
+            -80.8222,35.23335,0
+            -80.82265,35.23303,0
+            -80.82285,35.23283,0
+            -80.82294,35.2327,0
+            -80.82296,35.23259,0
+            -80.82297,35.2325,0
+            -80.82291,35.23239,0
+            -80.82285,35.23233,0
+            -80.8227,35.2322,0
+            -80.82256,35.23236,0
+            -80.82217,35.23262,0
+            -80.82256,35.23236,0
+            -80.8227,35.2322,0
+            -80.82246,35.23201,0
+            -80.82217,35.23176,0
+            -80.82211,35.23167,0
+            -80.82209,35.23154,0
+            -80.82213,35.23137,0
+            -80.82217,35.23096,0
+            -80.82218,35.23077,0
+            -80.82215,35.23039,0
+            -80.82214,35.23031,0
+            -80.82245,35.23033,0
+            -80.82257,35.23034,0
+            -80.82277,35.23046,0
+            -80.82284,35.23043,0
+            -80.82324,35.23014,0
+            -80.82382,35.22974,0
+            -80.82391,35.22967,0
+            -80.82393,35.22964,0
+            -80.82392,35.22955,0
+            -80.82395,35.22935,0
+            -80.82386,35.22923,0
+            -80.8238,35.22908,0
+            -80.82378,35.22898,0
+            -80.8238,35.22891,0
+            -80.82396,35.22869,0
+            -80.82409,35.22857,0
+            -80.82433,35.22838,0
+            -80.82467,35.22818,0
+            -80.82481,35.22805,0
+            -80.82495,35.22794,0
+            -80.82528,35.2278,0
+            -80.82542,35.22774,0
+            -80.8255,35.22764,0
+            -80.8256,35.22731,0
+            -80.82566,35.22726,0
+            -80.82577,35.22723,0
+            -80.82613,35.2272,0
+            -80.82649,35.22719,0
+            -80.82703,35.22717,0
+            -80.82719,35.22705,0
+            -80.82741,35.22677,0
+            -80.82761,35.22632,0
+            -80.82764,35.22594,0
+            -80.82771,35.22558,0
+            -80.82784,35.22528,0
+            -80.82771,35.22525,0
+            -80.82742,35.22508,0
+            -80.82664,35.22456,0
+            -80.82621,35.22428,0
+            -80.82634,35.22414,0
+            -80.82671,35.22374,0
+            -80.8269,35.22386,0
+            -80.82745,35.22424,0
+            -80.8278,35.22446,0
+            -80.82833,35.22481,0
+            -80.82854,35.22494,0
+            -80.82889,35.22506,0
+            -80.82914,35.22514,0
+            -80.82921,35.22503,0
+            -80.82938,35.2247,0
+            -80.82952,35.22447,0
+            -80.82967,35.22428,0
+            -80.82988,35.22411,0
+            -80.8302,35.22389,0
+            -80.83074,35.22353,0
+            -80.83158,35.22292,0
+            -80.83187,35.22271,0
+            -80.83291,35.22197,0
+            -80.83296,35.22188,0
+            -80.8334,35.22158,0
+            -80.83392,35.22122,0
+            -80.83447,35.22081,0
+            -80.83489,35.2205,0
+            -80.83497,35.22044,0
+            -80.83504,35.22043,0
+            -80.83519,35.22036,0
+            -80.83548,35.22015,0
+            -80.83623,35.21963,0
+            -80.83736,35.21884,0
+            -80.83913,35.21761,0
+            -80.83919,35.21766,0
+            -80.84007,35.21843,0
+            -80.84097,35.2192,0
+            -80.84168,35.21982,0
+            -80.84195,35.22009,0
+            -80.84212,35.22025,0
+            -80.84236,35.22054,0
+            -80.84247,35.22071,0
+            -80.84254,35.22086,0
+            -80.84262,35.22112,0
+            -80.84254,35.22117,0
+            -80.8426,35.22123,0
+            -80.84267,35.22132,0
+            -80.84272,35.22144,0
+            -80.84275,35.22153,0
+            -80.84288,35.22176,0
+            -80.84301,35.22193,0
+            -80.84332,35.22222,0
+            -80.84338,35.22227,0
+            -80.84341,35.22225,0
+            -80.8446,35.22144,0
+            -80.84494,35.22122,0
+            -80.84545,35.22087,0
+            -80.8456,35.22092,0
+            -80.84566,35.22098,0
+            -80.84567,35.22098,0
+            -80.84704,35.22222,0
+            -80.84755,35.22266,0
+            -80.84846,35.22345,0
+            -80.84948,35.22448,0
+            -80.85061,35.22568,0
+            -80.85073,35.2258,0
+            -80.85076,35.22588,0
+            -80.85089,35.2261,0
+            -80.85133,35.2268,0
+            -80.85137,35.22702,0
+            -80.85136,35.22713,0
+            -80.85133,35.2272,0
+            -80.85131,35.22729,0
+            -80.85121,35.22745,0
+            -80.85112,35.22755,0
+            -80.84978,35.22847,0
+            -80.8495,35.22867,0
+            -80.84913,35.229,0
+            -80.84886,35.22926,0
+            -80.84833,35.22964,0
+            -80.84826,35.2297,0
+            -80.84823,35.22972,0
+            -80.84814,35.22965,0
+            -80.84749,35.2291,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>NHCM 2nd Half 2025</name>
+        <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.85072,35.22579,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>NHCM 2nd Half 2025</name>
+        <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.84749,35.2291,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>2025 NHCM 1st Half </name>
+      <Placemark>
+        <name>NHCM 1st Half 2025</name>
+        <styleUrl>#line-F9A825-5650-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -80.84796,35.22378,0
+            -80.84852,35.22341,0
+            -80.84906,35.22302,0
+            -80.84921,35.22288,0
+            -80.84971,35.22236,0
+            -80.85013,35.22195,0
+            -80.85059,35.22147,0
+            -80.85114,35.22094,0
+            -80.85106,35.22087,0
+            -80.85102,35.2209,0
+            -80.85075,35.22066,0
+            -80.85057,35.2205,0
+            -80.85051,35.22054,0
+            -80.85022,35.22078,0
+            -80.84999,35.22097,0
+            -80.84971,35.22118,0
+            -80.84963,35.22123,0
+            -80.849,35.22156,0
+            -80.84842,35.22187,0
+            -80.84805,35.22212,0
+            -80.84744,35.22259,0
+            -80.84634,35.22333,0
+            -80.84576,35.22372,0
+            -80.84535,35.22402,0
+            -80.8451,35.22418,0
+            -80.84432,35.22472,0
+            -80.84388,35.22501,0
+            -80.84325,35.22545,0
+            -80.84318,35.2255,0
+            -80.84309,35.2254,0
+            -80.84292,35.22525,0
+            -80.84258,35.22494,0
+            -80.84232,35.22473,0
+            -80.84208,35.22448,0
+            -80.84186,35.22429,0
+            -80.84148,35.224,0
+            -80.84101,35.22357,0
+            -80.83999,35.22269,0
+            -80.83988,35.2226,0
+            -80.83931,35.22211,0
+            -80.83924,35.22202,0
+            -80.83911,35.22211,0
+            -80.83896,35.22198,0
+            -80.83878,35.22183,0
+            -80.83832,35.22144,0
+            -80.83762,35.22084,0
+            -80.8365,35.21989,0
+            -80.83615,35.2196,0
+            -80.83537,35.21887,0
+            -80.83445,35.21804,0
+            -80.83419,35.2178,0
+            -80.83404,35.21766,0
+            -80.83418,35.21758,0
+            -80.83406,35.21747,0
+            -80.8337,35.21717,0
+            -80.83295,35.21661,0
+            -80.83263,35.21639,0
+            -80.83247,35.21627,0
+            -80.83249,35.21648,0
+            -80.83235,35.21637,0
+            -80.83217,35.21625,0
+            -80.83199,35.21613,0
+            -80.83205,35.21608,0
+            -80.83162,35.21577,0
+            -80.83152,35.21567,0
+            -80.83122,35.21544,0
+            -80.83084,35.21517,0
+            -80.83075,35.21511,0
+            -80.82864,35.21361,0
+            -80.82746,35.21277,0
+            -80.82711,35.21253,0
+            -80.827,35.21243,0
+            -80.82664,35.21217,0
+            -80.82632,35.21194,0
+            -80.82598,35.21168,0
+            -80.82582,35.21157,0
+            -80.82579,35.2116,0
+            -80.82464,35.21078,0
+            -80.82429,35.21041,0
+            -80.82338,35.20945,0
+            -80.82189,35.20793,0
+            -80.82149,35.20751,0
+            -80.82118,35.20716,0
+            -80.82063,35.20663,0
+            -80.81978,35.20574,0
+            -80.81946,35.20539,0
+            -80.81911,35.20503,0
+            -80.81866,35.20454,0
+            -80.81855,35.20442,0
+            -80.81856,35.2044,0
+            -80.81859,35.20433,0
+            -80.81859,35.20426,0
+            -80.81854,35.20363,0
+            -80.81854,35.20327,0
+            -80.8186,35.2027,0
+            -80.81861,35.20233,0
+            -80.81859,35.20217,0
+            -80.81852,35.20184,0
+            -80.81848,35.2017,0
+            -80.81827,35.20126,0
+            -80.81764,35.20013,0
+            -80.81755,35.19986,0
+            -80.81752,35.19942,0
+            -80.81755,35.19915,0
+            -80.81762,35.1989,0
+            -80.81811,35.1979,0
+            -80.81827,35.19755,0
+            -80.81835,35.19729,0
+            -80.8184,35.19697,0
+            -80.81839,35.19685,0
+            -80.81836,35.19657,0
+            -80.81823,35.19614,0
+            -80.81816,35.19591,0
+            -80.81814,35.19567,0
+            -80.81816,35.19543,0
+            -80.81824,35.19508,0
+            -80.81858,35.19349,0
+            -80.81862,35.19325,0
+            -80.81862,35.19291,0
+            -80.81879,35.19088,0
+            -80.81888,35.19058,0
+            -80.81893,35.19046,0
+            -80.81907,35.1902,0
+            -80.8192,35.19006,0
+            -80.81941,35.18987,0
+            -80.81958,35.18973,0
+            -80.81977,35.1896,0
+            -80.81998,35.1895,0
+            -80.81976,35.18899,0
+            -80.8195,35.18837,0
+            -80.8194,35.18814,0
+            -80.81919,35.18763,0
+            -80.81871,35.18651,0
+            -80.81865,35.18634,0
+            -80.81863,35.18608,0
+            -80.81864,35.18592,0
+            -80.8187,35.18573,0
+            -80.81875,35.18564,0
+            -80.81878,35.1856,0
+            -80.81892,35.18542,0
+            -80.81913,35.18523,0
+            -80.81974,35.18479,0
+            -80.8201,35.18458,0
+            -80.82065,35.18429,0
+            -80.82076,35.18425,0
+            -80.82063,35.18392,0
+            -80.82118,35.18378,0
+            -80.8217,35.18365,0
+            -80.82195,35.18363,0
+            -80.82207,35.18363,0
+            -80.82226,35.18366,0
+            -80.8222,35.18391,0
+            -80.8222,35.18403,0
+            -80.8222,35.18409,0
+            -80.82222,35.18422,0
+            -80.82231,35.18444,0
+            -80.82266,35.1851,0
+            -80.82285,35.18543,0
+            -80.82327,35.18612,0
+            -80.8234,35.18633,0
+            -80.82364,35.18687,0
+            -80.82412,35.18818,0
+            -80.82438,35.18888,0
+            -80.82446,35.18909,0
+            -80.82453,35.18944,0
+            -80.82458,35.18976,0
+            -80.8247,35.19014,0
+            -80.82491,35.19052,0
+            -80.82557,35.19156,0
+            -80.82633,35.19277,0
+            -80.82643,35.19293,0
+            -80.82671,35.19286,0
+            -80.82688,35.19286,0
+            -80.82708,35.19289,0
+            -80.82709,35.1927,0
+            -80.8271,35.19239,0
+            -80.82712,35.19186,0
+            -80.82714,35.19179,0
+            -80.82725,35.19148,0
+            -80.82731,35.19137,0
+            -80.82771,35.19084,0
+            -80.82824,35.19014,0
+            -80.82831,35.18998,0
+            -80.82833,35.18989,0
+            -80.82847,35.18934,0
+            -80.82851,35.18888,0
+            -80.82845,35.18856,0
+            -80.82839,35.18838,0
+            -80.82824,35.18806,0
+            -80.82821,35.18802,0
+            -80.82839,35.18792,0
+            -80.8293,35.18741,0
+            -80.82959,35.18725,0
+            -80.82992,35.18744,0
+            -80.82992,35.1872,0
+            -80.82993,35.18687,0
+            -80.82994,35.18663,0
+            -80.83004,35.18591,0
+            -80.83013,35.18592,0
+            -80.83018,35.18565,0
+            -80.8303,35.18531,0
+            -80.83043,35.18504,0
+            -80.83056,35.18488,0
+            -80.831,35.18445,0
+            -80.83129,35.18415,0
+            -80.83202,35.18338,0
+            -80.83241,35.18289,0
+            -80.83262,35.18257,0
+            -80.83287,35.18222,0
+            -80.83308,35.1819,0
+            -80.83323,35.18175,0
+            -80.83344,35.1816,0
+            -80.83366,35.18149,0
+            -80.83389,35.18139,0
+            -80.83422,35.18129,0
+            -80.83442,35.18125,0
+            -80.83465,35.18123,0
+            -80.83475,35.18124,0
+            -80.83492,35.18125,0
+            -80.83551,35.18125,0
+            -80.83652,35.18131,0
+            -80.83719,35.1814,0
+            -80.83764,35.18153,0
+            -80.83811,35.18172,0
+            -80.83847,35.18191,0
+            -80.83864,35.18203,0
+            -80.83895,35.18228,0
+            -80.83921,35.18259,0
+            -80.83941,35.18288,0
+            -80.83965,35.18329,0
+            -80.83969,35.18337,0
+            -80.83968,35.18337,0
+            -80.83986,35.18377,0
+            -80.84003,35.18424,0
+            -80.84013,35.18465,0
+            -80.84018,35.18502,0
+            -80.84019,35.18535,0
+            -80.84015,35.18625,0
+            -80.84007,35.18668,0
+            -80.83989,35.18727,0
+            -80.83973,35.18765,0
+            -80.83959,35.18794,0
+            -80.83862,35.18969,0
+            -80.83819,35.19035,0
+            -80.83714,35.19192,0
+            -80.83706,35.19209,0
+            -80.83675,35.19265,0
+            -80.83672,35.19275,0
+            -80.83669,35.19297,0
+            -80.83681,35.19424,0
+            -80.83683,35.19459,0
+            -80.83679,35.19498,0
+            -80.83683,35.19511,0
+            -80.83676,35.19579,0
+            -80.83672,35.19613,0
+            -80.83652,35.19794,0
+            -80.8361,35.2017,0
+            -80.83608,35.20196,0
+            -80.83597,35.20289,0
+            -80.83606,35.2029,0
+            -80.83603,35.20317,0
+            -80.83596,35.20387,0
+            -80.83594,35.20448,0
+            -80.83596,35.20467,0
+            -80.83601,35.20486,0
+            -80.83643,35.20519,0
+            -80.8367,35.2054,0
+            -80.83701,35.20563,0
+            -80.83758,35.20608,0
+            -80.83772,35.20623,0
+            -80.83805,35.20655,0
+            -80.83849,35.20703,0
+            -80.83863,35.20713,0
+            -80.83869,35.20724,0
+            -80.83888,35.20744,0
+            -80.83908,35.20767,0
+            -80.83944,35.20805,0
+            -80.83977,35.2084,0
+            -80.84016,35.20884,0
+            -80.84045,35.20915,0
+            -80.84065,35.20939,0
+            -80.84102,35.20978,0
+            -80.84151,35.21032,0
+            -80.8417,35.21052,0
+            -80.84196,35.2108,0
+            -80.84201,35.21076,0
+            -80.84224,35.21061,0
+            -80.84262,35.21038,0
+            -80.84294,35.21025,0
+            -80.84318,35.2102,0
+            -80.84355,35.21019,0
+            -80.84433,35.21025,0
+            -80.84435,35.21006,0
+            -80.84437,35.20969,0
+            -80.84435,35.20864,0
+            -80.84436,35.20828,0
+            -80.84441,35.20805,0
+            -80.84451,35.2078,0
+            -80.8446,35.20762,0
+            -80.84474,35.20744,0
+            -80.84489,35.20731,0
+            -80.84518,35.20714,0
+            -80.8453,35.20709,0
+            -80.84543,35.20709,0
+            -80.84593,35.20694,0
+            -80.84626,35.20685,0
+            -80.84659,35.20671,0
+            -80.8469,35.20675,0
+            -80.84716,35.20682,0
+            -80.84747,35.20696,0
+            -80.84761,35.20706,0
+            -80.84782,35.20725,0
+            -80.84812,35.20763,0
+            -80.84828,35.20778,0
+            -80.84849,35.20792,0
+            -80.84882,35.20807,0
+            -80.84899,35.20818,0
+            -80.84908,35.2083,0
+            -80.84925,35.20861,0
+            -80.84936,35.20873,0
+            -80.84954,35.20885,0
+            -80.84983,35.20897,0
+            -80.84998,35.209,0
+            -80.85024,35.20901,0
+            -80.85037,35.20903,0
+            -80.85052,35.20908,0
+            -80.85068,35.20917,0
+            -80.8508,35.20928,0
+            -80.85143,35.20993,0
+            -80.85149,35.20996,0
+            -80.85147,35.21008,0
+            -80.85147,35.21019,0
+            -80.85149,35.21041,0
+            -80.85159,35.21062,0
+            -80.85171,35.21074,0
+            -80.85175,35.21078,0
+            -80.85164,35.21082,0
+            -80.85132,35.21081,0
+            -80.85104,35.21081,0
+            -80.85076,35.21087,0
+            -80.85038,35.21103,0
+            -80.85008,35.21122,0
+            -80.84984,35.21141,0
+            -80.84952,35.21174,0
+            -80.84897,35.21256,0
+            -80.84812,35.21237,0
+            -80.84752,35.2122,0
+            -80.84644,35.21179,0
+            -80.8458,35.21158,0
+            -80.8454,35.2115,0
+            -80.84495,35.21144,0
+            -80.84421,35.2114,0
+            -80.84416,35.2118,0
+            -80.84412,35.21238,0
+            -80.84415,35.21268,0
+            -80.84419,35.2129,0
+            -80.84434,35.2132,0
+            -80.84447,35.21345,0
+            -80.84456,35.21364,0
+            -80.8447,35.21376,0
+            -80.84491,35.21399,0
+            -80.84508,35.2142,0
+            -80.8451,35.21426,0
+            -80.84516,35.21433,0
+            -80.84526,35.21444,0
+            -80.84544,35.21463,0
+            -80.84635,35.21561,0
+            -80.84723,35.21654,0
+            -80.84778,35.21715,0
+            -80.84819,35.21763,0
+            -80.84837,35.21786,0
+            -80.8487,35.2183,0
+            -80.84899,35.21869,0
+            -80.84928,35.21908,0
+            -80.84946,35.21931,0
+            -80.84969,35.21953,0
+            -80.8499,35.21972,0
+            -80.8507,35.22042,0
+            -80.85121,35.22087,0
+            -80.85146,35.22062,0
+            -80.85213,35.21996,0
+            -80.85305,35.21907,0
+            -80.85401,35.21813,0
+            -80.85473,35.21744,0
+            -80.856,35.21621,0
+            -80.85607,35.21615,0
+            -80.85623,35.21605,0
+            -80.85621,35.21591,0
+            -80.85628,35.21558,0
+            -80.85633,35.21547,0
+            -80.85648,35.21528,0
+            -80.85686,35.21486,0
+            -80.85791,35.21368,0
+            -80.85999,35.21464,0
+            -80.86073,35.21496,0
+            -80.86447,35.21671,0
+            -80.86475,35.21683,0
+            -80.86465,35.2169,0
+            -80.86428,35.21711,0
+            -80.86228,35.21824,0
+            -80.85998,35.21952,0
+            -80.85888,35.22015,0
+            -80.85811,35.22069,0
+            -80.85624,35.222,0
+            -80.85518,35.22273,0
+            -80.85431,35.22335,0
+            -80.85358,35.22384,0
+            -80.85332,35.22402,0
+            -80.85309,35.22417,0
+            -80.85299,35.22419,0
+            -80.85266,35.2242,0
+            -80.85232,35.22423,0
+            -80.8522,35.22425,0
+            -80.85185,35.22437,0
+            -80.85172,35.22444,0
+            -80.85159,35.22452,0
+            -80.85138,35.22467,0
+            -80.85123,35.22481,0
+            -80.85109,35.22498,0
+            -80.851,35.22515,0
+            -80.85089,35.22546,0
+            -80.85089,35.22547,0
+            -80.85081,35.22566,0
+            -80.85073,35.2258,0
+            -80.85082,35.226,0
+            -80.85103,35.22632,0
+            -80.85135,35.22685,0
+            -80.85137,35.22707,0
+            -80.85131,35.22729,0
+            -80.85121,35.22745,0
+            -80.85112,35.22755,0
+            -80.85092,35.22768,0
+            -80.8502,35.22818,0
+            -80.8495,35.22867,0
+            -80.84886,35.22926,0
+            -80.84826,35.2297,0
+            -80.84823,35.22972,0
+            -80.84818,35.22968,0
+            -80.84752,35.22912,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>2025 5k Course</name>
+      <Placemark>
+        <name>NHCM Chick fil A 5K 2025</name>
+        <styleUrl>#line-FF0000-4000-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -80.84795,35.22376,0
+            -80.84842,35.22345,0
+            -80.84851,35.22336,0
+            -80.84908,35.22295,0
+            -80.84914,35.22289,0
+            -80.84948,35.22256,0
+            -80.84997,35.22208,0
+            -80.85031,35.22173,0
+            -80.85033,35.22171,0
+            -80.85065,35.2214,0
+            -80.85096,35.22107,0
+            -80.85184,35.22022,0
+            -80.85232,35.21976,0
+            -80.85271,35.21939,0
+            -80.85321,35.21892,0
+            -80.85341,35.21872,0
+            -80.85435,35.21781,0
+            -80.85515,35.21703,0
+            -80.85603,35.21618,0
+            -80.85616,35.21609,0
+            -80.85623,35.21605,0
+            -80.85621,35.21598,0
+            -80.85623,35.21582,0
+            -80.8563,35.21552,0
+            -80.8564,35.21538,0
+            -80.85653,35.21523,0
+            -80.85729,35.21437,0
+            -80.85772,35.2139,0
+            -80.85791,35.21368,0
+            -80.85831,35.21387,0
+            -80.85836,35.21389,0
+            -80.85997,35.21463,0
+            -80.86073,35.21496,0
+            -80.86431,35.21663,0
+            -80.86474,35.21683,0
+            -80.86466,35.21688,0
+            -80.86157,35.21863,0
+            -80.86002,35.21949,0
+            -80.85873,35.22024,0
+            -80.85807,35.21979,0
+            -80.8565,35.2187,0
+            -80.85605,35.21835,0
+            -80.8559,35.21851,0
+            -80.85557,35.21884,0
+            -80.85544,35.21893,0
+            -80.85517,35.21905,0
+            -80.85498,35.21915,0
+            -80.8544,35.21971,0
+            -80.8539,35.22019,0
+            -80.85362,35.22045,0
+            -80.85354,35.2205,0
+            -80.85345,35.22058,0
+            -80.8535,35.22066,0
+            -80.85372,35.22117,0
+            -80.85379,35.22136,0
+            -80.85371,35.22147,0
+            -80.85379,35.22153,0
+            -80.85386,35.22152,0
+            -80.85394,35.22165,0
+            -80.85404,35.22179,0
+            -80.85425,35.22202,0
+            -80.85454,35.22228,0
+            -80.85478,35.22249,0
+            -80.85509,35.22278,0
+            -80.8548,35.22298,0
+            -80.85468,35.22307,0
+            -80.8546,35.22312,0
+            -80.85425,35.22335,0
+            -80.85381,35.22363,0
+            -80.85339,35.22393,0
+            -80.8532,35.22406,0
+            -80.85298,35.22416,0
+            -80.85292,35.22416,0
+            -80.85265,35.22416,0
+            -80.85231,35.22419,0
+            -80.85218,35.22421,0
+            -80.85182,35.22434,0
+            -80.85156,35.22448,0
+            -80.85146,35.22455,0
+            -80.85142,35.22458,0
+            -80.85114,35.22484,0
+            -80.85098,35.22508,0
+            -80.85091,35.22523,0
+            -80.8509,35.22527,0
+            -80.85082,35.22552,0
+            -80.85075,35.22567,0
+            -80.85068,35.22579,0
+            -80.85073,35.22594,0
+            -80.85084,35.22613,0
+            -80.85125,35.22676,0
+            -80.85129,35.22686,0
+            -80.85132,35.22698,0
+            -80.8513,35.22715,0
+            -80.85127,35.22728,0
+            -80.85121,35.22741,0
+            -80.85117,35.22746,0
+            -80.85096,35.22764,0
+            -80.85043,35.22798,0
+            -80.84965,35.22853,0
+            -80.84944,35.22868,0
+            -80.84907,35.22903,0
+            -80.84884,35.22925,0
+            -80.84855,35.22947,0
+            -80.84827,35.22966,0
+            -80.84823,35.2297,0
+            -80.84827,35.22966,0
+            -80.84812,35.22976,0
+            -80.84795,35.22962,0
+            -80.84793,35.2296,0
+            -80.84756,35.22928,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>NHCM Chick fil A 5K 2025</name>
+        <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.84795,35.22376,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>NHCM Chick fil A 5K 2025</name>
+        <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.84756,35.22928,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Cheer Stations </name>
+      <Placemark>
+        <name><![CDATA[Smile 20 - Goody's ]]></name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.8076902,35.2332454,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Charlotte Running Company </name>
+        <description>Nike, Hydration and Fun!</description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            -80.7985787,35.2388111,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Villa Heights Community Organization</name>
+        <styleUrl>#icon-1899-0288D1-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            -80.816232,35.2385239,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

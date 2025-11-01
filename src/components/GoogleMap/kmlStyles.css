@@ -1,0 +1,115 @@
+/* Hide Google Maps UI elements */
+a[href^="http://maps.google.com/maps"],
+a[href^="https://maps.google.com/maps"],
+a[href^="https://www.google.com/maps"],
+.gmnoprint,
+.gm-style-cc,
+.gm-style > div:first-child > div:last-child {
+  display: none !important;
+}
+
+/* Hide Google logo */
+img[src*="googleapis.com/maps"],
+img[alt*="Google"],
+.gm-style > div:first-child > div:first-child {
+  display: none !important;
+}
+
+/* Hide keyboard shortcuts and map data */
+.gm-style-cc,
+.gm-style > div:first-child > div:last-child {
+  display: none !important;
+}
+
+/* Hide terms and data links */
+a[href*="terms"],
+a[href*="privacy"],
+a[href*="mapdata"] {
+  display: none !important;
+}
+
+/* KML Layer Styling - Override default purple color */
+/* Note: KML styling is limited by Google Maps API, but we can try */
+
+/* Override purple polylines from KML */
+.gm-style div[style*="rgb(204, 0, 204)"],
+.gm-style div[style*="#cc00cc"],
+.gm-style div[style*="rgb(204,0,204)"] {
+  stroke: #4f46e5 !important; /* Use primary color instead of purple */
+  stroke-width: 4px !important;
+  color: #4f46e5 !important;
+}
+
+/* FIX WHITE TEXT ON WHITE BACKGROUND - KML Info Windows */
+.gm-style-iw-c {
+  max-width: 300px !important;
+  padding: 0 !important;
+  color: #000000 !important; /* Force black text */
+  background: #ffffff !important; /* Force white background */
+}
+
+.gm-style-iw-d {
+  overflow: auto !important;
+  color: #000000 !important; /* Force black text */
+  background: #ffffff !important; /* Force white background */
+}
+
+.gm-style-iw-t {
+  padding: 0 !important;
+  background: #ffffff !important; /* Force white background */
+}
+
+.gm-style-iw-tc {
+  background: #ffffff !important; /* Force white background */
+}
+
+/* Ensure all text in info windows is visible */
+.gm-style-iw * {
+  color: #000000 !important;
+}
+
+.gm-style-iw h1,
+.gm-style-iw h2,
+.gm-style-iw h3,
+.gm-style-iw p,
+.gm-style-iw span,
+.gm-style-iw div {
+  color: #000000 !important;
+}
+
+/* Ensure KML markers are visible */
+.gm-style img[src*="marker"],
+.gm-style img[src*="icon"] {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+/* Style KML layer container */
+.gm-style-pbc {
+  z-index: 100 !important;
+}
+
+/* Override any purple path elements */
+path[stroke*="#cc00cc"],
+path[stroke*="rgb(204, 0, 204)"] {
+  stroke: #4f46e5 !important;
+  stroke-width: 4px !important;
+}
+
+/* Style KML placemark labels */
+.gm-style label {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #000000 !important; /* Ensure labels are visible */
+  background: rgba(255, 255, 255, 0.9) !important; /* White background for labels */
+}
+
+/* Fix any white text in overlays */
+.gm-style-cc {
+  color: #000000 !important;
+}
+
+.gm-style-cc span {
+  color: #000000 !important;
+}
+
