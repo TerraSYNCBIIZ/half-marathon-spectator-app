@@ -1,4 +1,4 @@
-import { Clock, Zap, Smartphone, MessageSquare, AlarmClock, Backpack, Navigation as NavIcon, Volume2 } from 'lucide-react';
+import { Clock, Zap, Smartphone, MessageSquare, AlarmClock, Backpack, Navigation as NavIcon, Volume2, Radio } from 'lucide-react';
 import { raceInfo } from '../data/raceData';
 import Card from '../components/ui/Card';
 
@@ -86,6 +86,28 @@ const HomePage = () => {
               </div>
             )}
           </div>
+          
+          {raceInfo.liveTrackingUrl && (
+            <div className="flex flex-col items-center gap-4">
+              <a
+                href={raceInfo.liveTrackingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-200 animate-pulse"
+              >
+                <Radio className="w-6 h-6" />
+                <span>Track Rachel Live</span>
+              </a>
+              <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 max-w-md text-center">
+                <p className="text-sm text-green-900 font-semibold mb-1">
+                  Important: Click "Follow" on Rachel's results page!
+                </p>
+                <p className="text-xs text-green-700">
+                  After clicking the link above, you'll see a <span className="font-bold">"Follow"</span> button on her results page. Click it to enable live tracking with real-time location, pace, and predicted finish time!
+                </p>
+              </div>
+            </div>
+          )}
         </div>
 
         <Card className="max-w-4xl mx-auto mb-12">

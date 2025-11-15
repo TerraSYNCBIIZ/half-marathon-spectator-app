@@ -1,14 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Map, Calendar, MapPin, Clock, Info } from 'lucide-react';
+import { Home, Map, Calendar } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 const navItems = [
   { path: '/', label: 'Home', icon: Home },
   { path: '/map', label: 'Map', icon: Map },
   { path: '/plan', label: 'Plan', icon: Calendar },
-  { path: '/guide', label: 'Spots', icon: MapPin },
-  { path: '/timing', label: 'Timing', icon: Clock },
-  { path: '/info', label: 'Info', icon: Info },
 ];
 
 const BottomNavigation = () => {
@@ -18,7 +15,7 @@ const BottomNavigation = () => {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 safe-area-inset-bottom">
-      <div className="grid grid-cols-6 h-16">
+      <div className="grid grid-cols-3 h-16">
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.path);

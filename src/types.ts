@@ -16,6 +16,9 @@ export interface SpectatorSpot {
   crowdLevel: 'low' | 'medium' | 'high';
   tips: string[];
   travelTimeFromPrevious?: number; // minutes
+  nearbyCoffee?: string; // Nearby coffee shop information
+  nearbyFood?: string; // Nearby food/restaurant information
+  parkingLocations?: string; // Parking locations with addresses for navigation
 }
 
 export interface RaceInfo {
@@ -25,6 +28,8 @@ export interface RaceInfo {
   distance: number; // in miles
   location: string;
   route: Coordinate[];
+  liveTrackingUrl?: string;
+  runnerName?: string;
 }
 
 export interface RunnerInfo {

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Map, Calendar, MapPin, Clock, Info, Menu, X } from 'lucide-react';
+import { Home, Map, Calendar, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '../lib/utils';
 
@@ -7,9 +7,6 @@ const navItems = [
   { path: '/', label: 'Home', icon: Home },
   { path: '/map', label: 'Map', icon: Map },
   { path: '/plan', label: 'Plan', icon: Calendar },
-  { path: '/guide', label: 'Spots', icon: MapPin },
-  { path: '/timing', label: 'Timing', icon: Clock },
-  { path: '/info', label: 'Info', icon: Info },
 ];
 
 const Navigation = () => {

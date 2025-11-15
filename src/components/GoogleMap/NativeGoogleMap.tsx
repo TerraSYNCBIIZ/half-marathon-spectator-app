@@ -5,6 +5,7 @@ import { useKMLData, KMLPlacemark } from '../../hooks/useKMLData';
 import { spectatorSpots } from '../../data/raceData';
 import MapSidebar from '../Map/MapSidebar';
 import { createMarkerIcon, getMarkerCategory } from '../../utils/markerIcons';
+import { getSpectatorRoutes } from '../../utils/spectatorRoutes';
 import './kmlStyles.css';
 
 interface NativeGoogleMapProps {
@@ -24,6 +25,9 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
   const [selectedMarker, setSelectedMarker] = useState<KMLPlacemark | null>(null);
   const [selectedSpotMarker, setSelectedSpotMarker] = useState<string | null>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
+  const [locationWatchId, setLocationWatchId] = useState<number | null>(null);
 
   // Load KML data from the public URL
   const kmlUrl = 'https://www.google.com/maps/d/kml?mid=1M56qvN_r7OLIShRshLUAAuvcArSQEuo&forcekml=1';
@@ -40,12 +44,43 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
     });
   }, [data]);
 
-  // Filter placemarks to exclude 5K markers
+  // Filter placemarks - only show essential markers
   const marathonPlacemarks = useMemo(() => {
     if (!data) return [];
     return data.placemarks.filter(p => {
       const name = p.name.toLowerCase();
-      return !name.includes('5k');
+      
+      // Exclude 5K markers
+      if (name.includes('5k')) return false;
+      
+      // Exclude HCM second half markers
+      if (name.includes('hcm second half') || name.includes('second half')) return false;
+      
+      // Exclude entertainment markers
+      if (name.includes('entertainment') || name.includes('dj') || name.includes('smile') || 
+          name.includes('running company') || name.includes('community organization')) {
+        return false;
+      }
+      
+      // Exclude water stations
+      if (name.includes('water')) return false;
+      
+      // Exclude facilities
+      if (name.includes('medical') || name.includes('bag check') || name.includes('expo') ||
+          name.includes('lounge') || name.includes('solutions') || name.includes('will call') ||
+          name.includes('volunteer') || name.includes('stage') || name.includes('awards') ||
+          name.includes('facilities') || name.includes('weigh in')) {
+        return false;
+      }
+      
+      // Only show Corral C (Rachel's corral) - exclude all other corrals
+      if (name.includes('corral')) {
+        // Only show if it's Corral C
+        return name.includes('corral c') || name.includes('c corral');
+      }
+      
+      // Keep start/finish and mile markers
+      return true;
     });
   }, [data]);
 
@@ -70,10 +105,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
     []
   );
 
-  const handleMapLoad = useCallback((map: google.maps.Map) => {
-    setMapInstance(map);
-    console.log('Map loaded');
-  }, []);
+  const [, setSpectatorMarkers] = useState<google.maps.Marker[]>([]);
 
   const handleMarkerClick = useCallback((placemark: KMLPlacemark) => {
     setSelectedMarker(placemark);
@@ -95,6 +127,78 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
     }
   }, [onSpectatorSpotClick]);
 
+  const handleMapLoad = useCallback((map: google.maps.Map) => {
+    setMapInstance(map);
+    
+    // Create spectator markers using native Google Maps API
+    const markers: google.maps.Marker[] = [];
+    
+    spectatorSpots.forEach((spot) => {
+      const marker = new google.maps.Marker({
+        position: spot.coordinates,
+        map: map,
+        title: spot.name,
+        icon: {
+          url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+          scaledSize: new google.maps.Size(32, 32),
+          anchor: new google.maps.Point(16, 32),
+        },
+        zIndex: 1000,
+      });
+      
+      marker.addListener('click', () => {
+        handleSpectatorSpotClick(spot.id);
+      });
+      
+      markers.push(marker);
+    });
+    
+    setSpectatorMarkers(markers);
+
+    // Start tracking user location
+    if (navigator.geolocation) {
+      const watchId = navigator.geolocation.watchPosition(
+        (position) => {
+          const userPos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          setUserLocation(userPos);
+
+          // Create or update user location marker (blue dot)
+          if (!userLocationMarker) {
+            const marker = new google.maps.Marker({
+              position: userPos,
+              map: map,
+              title: 'Your Location',
+              icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 10,
+                fillColor: '#4285F4',
+                fillOpacity: 1,
+                strokeColor: '#ffffff',
+                strokeWeight: 3,
+              },
+              zIndex: 2000,
+            });
+            setUserLocationMarker(marker);
+          } else {
+            userLocationMarker.setPosition(userPos);
+          }
+        },
+        (error) => {
+          console.error('Location access denied:', error.message);
+        },
+        {
+          enableHighAccuracy: true,
+          maximumAge: 10000,
+          timeout: 5000,
+        }
+      );
+      setLocationWatchId(watchId);
+    }
+  }, [handleSpectatorSpotClick, userLocationMarker]);
+
   const handleSidebarPlacemarkSelect = useCallback((placemark: KMLPlacemark) => {
     setSelectedMarker(placemark);
     setSelectedSpotMarker(null);
@@ -103,6 +207,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
       mapInstance.setZoom(16);
     }
   }, [mapInstance]);
+
 
   // Fit map to bounds if we have data
   useMemo(() => {
@@ -117,6 +222,26 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
       mapInstance.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
     }
   }, [mapInstance, marathonRoutes]);
+
+  // Cleanup location tracking on unmount
+  useMemo(() => {
+    return () => {
+      if (locationWatchId !== null) {
+        navigator.geolocation.clearWatch(locationWatchId);
+      }
+      if (userLocationMarker) {
+        userLocationMarker.setMap(null);
+      }
+    };
+  }, [locationWatchId, userLocationMarker]);
+
+  // Button to center map on user location
+  const centerOnUserLocation = useCallback(() => {
+    if (mapInstance && userLocation) {
+      mapInstance.panTo(userLocation);
+      mapInstance.setZoom(16);
+    }
+  }, [mapInstance, userLocation]);
 
   if (!GOOGLE_MAPS_API_KEY) {
     return (
@@ -139,6 +264,9 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
           placemarks={marathonPlacemarks}
           selectedPlacemark={selectedMarker}
           onPlacemarkSelect={handleSidebarPlacemarkSelect}
+          spectatorSpots={spectatorSpots}
+          selectedSpectatorSpot={selectedSpotMarker}
+          onSpectatorSpotSelect={handleSpectatorSpotClick}
         />
       )}
 
@@ -168,7 +296,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
         ))}
 
         {/* Render KML markers with unique icons based on category */}
-        {marathonPlacemarks.map((placemark) => {
+        {mapInstance && marathonPlacemarks.map((placemark) => {
           // Determine category and get appropriate icon
           const category = getMarkerCategory(placemark.name);
           const markerIcon = createMarkerIcon(category);
@@ -186,30 +314,35 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
           );
         })}
 
-        {/* Render spectator spots from the app */}
-        {mapInstance && spectatorSpots.map((spot) => (
-          <Marker
-            key={`spot-${spot.id}`}
-            position={spot.coordinates}
-            title={spot.name}
-            onClick={() => handleSpectatorSpotClick(spot.id)}
-            icon={{
-              path: window.google?.maps?.SymbolPath?.CIRCLE || 0,
-              fillColor: '#10b981',
-              fillOpacity: 1,
-              strokeColor: '#ffffff',
-              strokeWeight: 3,
-              scale: 12,
+        {/* Render spectator spot routes */}
+        {mapInstance && getSpectatorRoutes(spectatorSpots).map((route) => (
+          <Polyline
+            key={`spectator-route-${route.fromSpotId}-${route.toSpotId}`}
+            path={route.route}
+            options={{
+              strokeColor: route.color,
+              strokeWeight: 4,
+              strokeOpacity: 0.7,
+              zIndex: 50,
+              icons: [
+                {
+                  icon: {
+                    path: window.google?.maps?.SymbolPath?.FORWARD_CLOSED_ARROW || 0,
+                    scale: 4,
+                    strokeColor: route.color,
+                    fillColor: route.color,
+                    fillOpacity: 1,
+                  },
+                  offset: '100%',
+                  repeat: '100px',
+                },
+              ],
             }}
-            label={{
-              text: '📍',
-              color: '#ffffff',
-              fontSize: '16px',
-              fontWeight: 'bold',
-            }}
-            zIndex={100}
           />
         ))}
+
+        {/* Spectator spots are now created using native Google Maps API in handleMapLoad */}
+        {/* This avoids React component re-render issues */}
 
         {/* Info window for selected KML marker */}
         {selectedMarker && (
@@ -255,32 +388,81 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
             position={spectatorSpots.find(s => s.id === selectedSpotMarker)?.coordinates || center}
             onCloseClick={handleInfoWindowClose}
           >
-            <div className="p-2 max-w-xs">
+            <div className="p-3 max-w-sm">
               {(() => {
                 const spot = spectatorSpots.find(s => s.id === selectedSpotMarker);
                 if (!spot) return null;
+                
+                // Find route to this spot
+                const routeToSpot = getSpectatorRoutes(spectatorSpots).find(r => r.toSpotId === spot.id);
+                
                 return (
                   <>
                     <div className="flex items-start space-x-2 mb-2">
-                      <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg className="w-5 h-5 text-[#5e6ad2] flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                         <circle cx="12" cy="10" r="3"/>
                       </svg>
-                      <h3 className="font-bold text-gray-900 text-base">{spot.name}</h3>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-gray-900 text-base">{spot.name}</h3>
+                        <div className="flex items-center space-x-1 text-xs font-semibold text-[#5e6ad2] mt-1">
+                          <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                          </svg>
+                          <span>Mile {spot.mileMarker}</span>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-sm text-gray-700 mb-2">{spot.description}</p>
-                    <div className="flex items-center space-x-1 text-xs font-semibold text-[#5e6ad2] mb-1">
-                      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                      </svg>
-                      <span>Mile {spot.mileMarker}</span>
+                    <p className="text-sm text-gray-700 mb-3">{spot.description}</p>
+                    
+                    {/* Travel info */}
+                    {routeToSpot && (
+                      <div className="bg-blue-50 p-2 rounded mb-2 text-xs">
+                        <div className="font-semibold text-blue-900 mb-1">Travel Info:</div>
+                        <div className="text-blue-700">
+                          {routeToSpot.travelMode === 'walking' ? '🚶' : '🚗'} {routeToSpot.description}
+                        </div>
+                        <div className="text-blue-600 mt-1">
+                          Time: ~{routeToSpot.estimatedTime} min | Distance: {routeToSpot.distance.toFixed(1)} mi
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Amenities */}
+                    {spot.nearbyCoffee && (
+                      <div className="bg-amber-50 p-2 rounded mb-2 text-xs">
+                        <div className="font-semibold text-amber-900 mb-1">☕ Coffee:</div>
+                        <div className="text-amber-700">{spot.nearbyCoffee}</div>
+                      </div>
+                    )}
+                    
+                    {spot.nearbyFood && (
+                      <div className="bg-green-50 p-2 rounded mb-2 text-xs">
+                        <div className="font-semibold text-green-900 mb-1">🍽️ Food:</div>
+                        <div className="text-green-700">{spot.nearbyFood}</div>
+                      </div>
+                    )}
+                    
+                    <div className="flex gap-2 mt-3 pt-3 border-t border-gray-200">
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${spot.coordinates.lat},${spot.coordinates.lng}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-[#5e6ad2] text-white px-3 py-2 rounded text-center text-sm font-medium hover:bg-[#4f5bc7] transition-colors flex items-center justify-center space-x-2"
+                      >
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M9 11l3 3L22 4M5 19l-2-7 20-4-10 6.5"/>
+                        </svg>
+                        <span>Directions</span>
+                      </a>
                     </div>
-                    <p className="text-xs text-gray-500 flex items-center">
+                    
+                    <p className="text-xs text-gray-500 mt-2 flex items-center">
                       <svg className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <circle cx="12" cy="12" r="10"/>
                         <path d="M12 6v6l4 2"/>
                       </svg>
-                      Spectator spot from your guide
+                      Your spectator spot
                     </p>
                   </>
                 );
@@ -312,12 +494,26 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
           </div>
           <p className="text-sm">{error}</p>
         </div>
-      )}
+          )}
 
-      </LoadScript>
-    </>
-  );
-};
+          </LoadScript>
 
-export default NativeGoogleMap;
+          {/* Center on My Location button */}
+          {userLocation && (
+            <button
+              onClick={centerOnUserLocation}
+              className="fixed bottom-24 right-4 z-[1001] bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-gray-200"
+              title="Center on my location"
+            >
+              <svg className="w-6 h-6 text-[#4285F4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="3" fill="currentColor"/>
+              </svg>
+            </button>
+          )}
+        </>
+      );
+    };
+
+    export default NativeGoogleMap;
 

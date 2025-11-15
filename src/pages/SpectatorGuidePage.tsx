@@ -149,6 +149,26 @@ const SpectatorGuidePage = () => {
                     </div>
                   )}
 
+                  {selectedSpot.nearbyCoffee && (
+                    <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                      <h3 className="text-xl font-bold text-[#1F2937] mb-2 flex items-center space-x-2">
+                        <span>☕</span>
+                        <span>Nearby Coffee</span>
+                      </h3>
+                      <p className="text-base text-[#6B7280] font-medium">{selectedSpot.nearbyCoffee}</p>
+                    </div>
+                  )}
+
+                  {selectedSpot.nearbyFood && (
+                    <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                      <h3 className="text-xl font-bold text-[#1F2937] mb-2 flex items-center space-x-2">
+                        <span>🍽️</span>
+                        <span>Nearby Food</span>
+                      </h3>
+                      <p className="text-base text-[#6B7280] font-medium">{selectedSpot.nearbyFood}</p>
+                    </div>
+                  )}
+
                   {selectedSpot.tips.length > 0 && (
                     <div>
                       <h3 className="text-xl font-bold text-[#1F2937] mb-2 flex items-center space-x-2">

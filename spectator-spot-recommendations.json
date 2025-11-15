@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Mile 2: Fourth Street and Hawthorne Lane",
+    "description": "Near Novant Health Hospital, ample parking",
+    "lat": 35.2143,
+    "lng": -80.8296,
+    "amenities": [
+      "Central Coffee Co.",
+      "Sunflour Baking Company"
+    ],
+    "routePoint": {
+      "lat": 35.21361,
+      "lng": -80.82864
+    },
+    "exactMile": 2.070520384529905,
+    "approximateMile": 2.070520384529905,
+    "distanceFromRoute": 0.07218183260237909
+  },
+  {
+    "name": "Miles 6.25-7.34: Queens Road West",
+    "description": "Wide median, stately trees, historic homes",
+    "lat": 35.1843,
+    "lng": -80.8311,
+    "amenities": [
+      "Not Just Coffee - Dilworth",
+      "Laurel Market"
+    ],
+    "routePoint": {
+      "lat": 35.18445,
+      "lng": -80.831
+    },
+    "exactMile": 5.989299196019186,
+    "approximateMile": 5.989299196019186,
+    "distanceFromRoute": 0.011803321134692157
+  },
+  {
+    "name": "Mile 10: East Morehead Street",
+    "description": "Between S. McDowell and S. Tryon",
+    "lat": 35.2117,
+    "lng": -80.8463,
+    "amenities": [
+      "Rhino Market & Deli",
+      "Community Matters Café"
+    ],
+    "routePoint": {
+      "lat": 35.21179,
+      "lng": -80.84644
+    },
+    "exactMile": 9.990314851458496,
+    "approximateMile": 9.990314851458496,
+    "distanceFromRoute": 0.010056877595986804
+  },
+  {
+    "name": "Mile 12.7: Marathon/Half Split",
+    "description": "The Sole cheer section, where routes diverge",
+    "lat": 35.217,
+    "lng": -80.8645,
+    "amenities": [
+      "Earl's Grocery",
+      "Crispy Banh Mi"
+    ],
+    "routePoint": {
+      "lat": 35.2169,
+      "lng": -80.86465
+    },
+    "exactMile": 11.987868669540017,
+    "approximateMile": 11.987868669540017,
+    "distanceFromRoute": 0.01092912353768956
+  },
+  {
+    "name": "Miles 15-17 & 21-23: North Davidson (NoDa)",
+    "description": "See runners twice, vibrant arts district",
+    "lat": 35.2415,
+    "lng": -80.8127,
+    "amenities": [
+      "Smelly Cat Coffeehouse",
+      "Heist Brewery"
+    ],
+    "routePoint": {
+      "lat": 35.24138,
+      "lng": -80.81279
+    },
+    "exactMile": 16.992152207177,
+    "approximateMile": 16.992152207177,
+    "distanceFromRoute": 0.009723642966414888
+  },
+  {
+    "name": "Miles 18 & 20: The Plaza and Mecklenburg Avenue",
+    "description": "See runners twice from same location",
+    "lat": 35.234,
+    "lng": -80.8063,
+    "amenities": [
+      "Zada Jane's Corner Café",
+      "Common Market Oakwold"
+    ],
+    "routePoint": {
+      "lat": 35.23404,
+      "lng": -80.80647
+    },
+    "exactMile": 21.3270471975285,
+    "approximateMile": 21.3270471975285,
+    "distanceFromRoute": 0.009984805790371231
+  }
+]

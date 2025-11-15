@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 import { KMLPlacemark } from '../../hooks/useKMLData';
+import { SpectatorSpot } from '../../types';
 import { getMarkerCategory, getMarkerIconInfo, CATEGORY_ICONS, MarkerCategory } from '../../utils/markerIcons';
+import { getSpectatorSpotIcon } from '../../utils/spectatorSpotIcons';
 import { Navigation, X, Flag, Milestone, Droplet, Music, Layers, Building, MapPin, CircleDot } from 'lucide-react';
 
 const iconMap = {
@@ -18,6 +20,9 @@ interface MapSidebarProps {
   placemarks: KMLPlacemark[];
   selectedPlacemark: KMLPlacemark | null;
   onPlacemarkSelect: (placemark: KMLPlacemark) => void;
+  spectatorSpots?: SpectatorSpot[];
+  selectedSpectatorSpot?: string | null;
+  onSpectatorSpotSelect?: (spotId: string) => void;
   onClose?: () => void;
 }
 
@@ -25,6 +30,9 @@ const MapSidebar: React.FC<MapSidebarProps> = ({
   placemarks,
   selectedPlacemark,
   onPlacemarkSelect,
+  spectatorSpots = [],
+  selectedSpectatorSpot,
+  onSpectatorSpotSelect,
   onClose,
 }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -43,6 +51,8 @@ const MapSidebar: React.FC<MapSidebarProps> = ({
       'other': 0,
     };
     
+    // Don't count 'other' category - we're removing it
+    
     placemarks.forEach(p => {
       const category = getMarkerCategory(p.name);
       counts[category]++;
@@ -58,6 +68,9 @@ const MapSidebar: React.FC<MapSidebarProps> = ({
     };
     
     (Object.keys(CATEGORY_ICONS) as MarkerCategory[]).forEach(category => {
+      // Skip 'other' category - we don't want to show it
+      if (category === 'other') return;
+      
       const categoryData = CATEGORY_ICONS[category];
       const count = categoryCounts[category];
       if (count > 0) {
@@ -144,6 +157,73 @@ const MapSidebar: React.FC<MapSidebarProps> = ({
 
       {/* Marker List */}
       <div className="flex-1 overflow-y-auto p-2">
+        {/* Spectator Spots Section */}
+        {spectatorSpots.length > 0 && (
+          <div className="mb-4 pb-4 border-b border-gray-200">
+            <h3 className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wide">Your Spectator Spots</h3>
+            <div className="space-y-1">
+              {spectatorSpots.map((spot) => {
+                const spotConfig = getSpectatorSpotIcon(spot.id, spot.name);
+                return (
+                  <div
+                    key={`spectator-${spot.id}`}
+                    className={`
+                      p-3 rounded-lg cursor-pointer transition-all border
+                      ${selectedSpectatorSpot === spot.id
+                        ? 'bg-[#f3f4f6] border-[#5e6ad2] shadow-md scale-[1.02]'
+                        : 'bg-white border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                      }
+                    `}
+                    onClick={() => onSpectatorSpotSelect?.(spot.id)}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1 min-w-0 flex items-start space-x-3">
+                        <div 
+                          className="p-2 rounded-lg flex items-center justify-center" 
+                          style={{ backgroundColor: `${spotConfig.fillColor}20` }}
+                        >
+                          <span style={{ fontSize: '18px' }}>{spotConfig.emoji}</span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-sm text-gray-900 truncate">
+                            {spot.name}
+                          </h4>
+                          <p className="text-xs text-gray-600 mt-1 line-clamp-2">
+                            Mile {spot.mileMarker}
+                          </p>
+                          <p className="text-xs text-gray-500 mt-1.5 flex items-center">
+                            <span className="mr-1" style={{ color: spotConfig.fillColor }}>📍</span>
+                            Your Spot
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {selectedSpectatorSpot === spot.id && (
+                      <div className="mt-3 pt-3 border-t border-gray-200 flex gap-2">
+                        <a
+                          href={`https://www.google.com/maps/dir/?api=1&destination=${spot.coordinates.lat},${spot.coordinates.lng}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-[#5e6ad2] text-white px-3 py-2 rounded-lg text-center text-xs font-medium hover:bg-[#4f5bc7] transition-colors flex items-center justify-center space-x-2"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Navigation size={14} />
+                          <span>Get Directions</span>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Race Markers Section */}
+        <div className="mb-2">
+          <h3 className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wide">Race Markers</h3>
+        </div>
         {filteredPlacemarks.length === 0 ? (
           <div className="text-center py-12 text-gray-500">
             <MapPin className="w-12 h-12 mx-auto mb-3 opacity-30" />

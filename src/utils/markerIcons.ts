@@ -138,9 +138,20 @@ export function getUniqueCategories(markerNames: string[]): MarkerCategory[] {
 
 /**
  * Creates a Google Maps marker icon configuration
+ * Only call this when google.maps is available (after map loads)
  */
-export function createMarkerIcon(category: MarkerCategory, size: number = 32) {
+export function createMarkerIcon(category: MarkerCategory, size: number = 32): google.maps.Icon {
   const info = CATEGORY_ICONS[category];
+  
+  // If google.maps is not available, return a fallback that will be replaced
+  // This should only happen during initial render before map loads
+  if (typeof google === 'undefined' || !google.maps) {
+    // Return just the URL - Google Maps will use default sizing
+    return {
+      url: info.icon,
+    } as google.maps.Icon;
+  }
+  
   return {
     url: info.icon,
     scaledSize: new google.maps.Size(size, size),
