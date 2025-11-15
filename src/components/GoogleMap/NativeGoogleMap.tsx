@@ -22,6 +22,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   onMarkerClick,
   onSpectatorSpotClick,
 }) => {
+  const [isGoogleLoaded, setIsGoogleLoaded] = useState(false);
   const [selectedMarker, setSelectedMarker] = useState<KMLPlacemark | null>(null);
   const [selectedSpotMarker, setSelectedSpotMarker] = useState<string | null>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
@@ -273,8 +274,16 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
         />
       )}
 
-      <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
-        <GoogleMap
+      <LoadScript 
+        googleMapsApiKey={GOOGLE_MAPS_API_KEY}
+        onLoad={() => {
+          console.log('✅ LoadScript: Google Maps fully loaded');
+          setIsGoogleLoaded(true);
+        }}
+        onError={(error) => console.error('❌ LoadScript error:', error)}
+      >
+        {isGoogleLoaded && (
+          <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={center}
           zoom={zoom}
@@ -471,6 +480,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
           </InfoWindow>
         )}
       </GoogleMap>
+        )}
 
       {/* Loading/Error overlays */}
       {loading && (
