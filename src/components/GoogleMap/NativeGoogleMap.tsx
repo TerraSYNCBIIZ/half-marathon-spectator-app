@@ -1,6 +1,6 @@
 import { useMemo, useState, useCallback, memo, useEffect, useRef } from 'react';
 import { GoogleMap, LoadScript, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
-import { GOOGLE_MAPS_API_KEY, DEFAULT_CENTER, DEFAULT_ZOOM, MAP_STYLES } from '../../config/googleMaps';
+import { GOOGLE_MAPS_API_KEY, DEFAULT_CENTER, MAP_STYLES } from '../../config/googleMaps';
 import { useKMLData, KMLPlacemark } from '../../hooks/useKMLData';
 import { spectatorSpots } from '../../data/raceData';
 import MapSidebar from '../Map/MapSidebar';
@@ -17,7 +17,6 @@ interface NativeGoogleMapProps {
 
 const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   center = DEFAULT_CENTER,
-  zoom = DEFAULT_ZOOM,
   onMarkerClick,
   onSpectatorSpotClick,
 }) => {
@@ -457,7 +456,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
               height: containerHeight, // Force explicit pixel height
             }}
           center={initialMapCenter}
-          zoom={zoom}
           options={mapOptions}
           onLoad={handleMapLoad}
         >
