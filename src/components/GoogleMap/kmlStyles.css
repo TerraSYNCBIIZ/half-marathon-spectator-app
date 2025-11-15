@@ -83,6 +83,8 @@ a[href*="mapdata"] {
   visibility: visible !important;
   opacity: 1 !important;
   display: block !important;
+  max-width: none !important;
+  max-height: none !important;
 }
 
 /* Ensure map container has proper dimensions */
@@ -94,15 +96,40 @@ div[style*="width: 100%"] {
 .gm-style > div {
   height: 100% !important;
   width: 100% !important;
+  position: relative !important;
 }
 
 /* Ensure map canvas is visible */
 .gm-style > div > div {
   visibility: visible !important;
+  height: 100% !important;
+  width: 100% !important;
 }
 
 /* Fix for production build where tiles might be hidden */
 .gm-style > div > div > div {
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Force tile images to load and display */
+.gm-style img[src*="maps.googleapis.com"],
+.gm-style img[src*="googleapis.com/maps"],
+.gm-style img[src*="mt0.google.com"],
+.gm-style img[src*="mt1.google.com"],
+.gm-style img[src*="mt2.google.com"],
+.gm-style img[src*="mt3.google.com"] {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  width: 256px !important;
+  height: 256px !important;
+}
+
+/* Ensure tile container divs are visible */
+.gm-style > div > div > div > div {
   visibility: visible !important;
   opacity: 1 !important;
 }

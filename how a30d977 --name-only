@@ -1,0 +1,20 @@
+[33mb3f3e37[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fix: Remove production console logs and add Vercel deployment documentation
+[33m5bfa6c9[m[33m ([m[1;35mrefs/stash[m[33m)[m On main: Stashing changes before reverting to previous commit
+[33m1275c27[m index on main: e5ab8eb fix: Add MutationObserver to force Google Maps tiles visible in real-time
+[33me5ab8eb[m fix: Add MutationObserver to force Google Maps tiles visible in real-time
+[33ma30d977[m fix: Triple-layer CSS fix for Google Maps tiles in production
+[33m5f988cc[m fix: Import mapFix.css globally to fix Google Maps tiles in production
+[33m2f465d4[m fix: Add permissive headers and multiple rendering tests for Google Maps tiles
+[33m60f0b90[m fix: Add explicit height to root elements for production
+[33m17f86e1[m fix: Remove blocking loading overlay that was hiding the map
+[33m89b4008[m fix: Add container wrapper to GoogleMap component to fix production rendering
+[33md3b1215[m fix: Secure environment variables and fix production map issue
+[33maadb696[m CRITICAL FIX: Use official useLoadScript pattern at app level per React Google Maps API docs
+[33m18cc703[m Add detailed map loading debug logs
+[33me496b1f[m Add proper LoadScript loading state to fix production tile rendering
+[33m295b236[m Add API key debug logging for production
+[33m72bd9c8[m Revert to working LoadScript configuration for production fix
+[33m451237f[m Force map tiles to load with resize trigger in production
+[33m3936c11[m Switch to useJsApiLoader for better production stability
+[33mb63f9a5[m Optimize map component with React.memo and useCallback to prevent re-renders
+[33m4fef729[m Fix map tiles: Move LoadScript to App level to prevent re-renders

@@ -30,6 +30,8 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
   const [locationWatchId, setLocationWatchId] = useState<number | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
+  const [containerHeight, setContainerHeight] = useState<string>('600px');
+  const [isContainerReady, setIsContainerReady] = useState(false);
 
   // Load KML data from the public URL
   const kmlUrl = 'https://www.google.com/maps/d/kml?mid=1M56qvN_r7OLIShRshLUAAuvcArSQEuo&forcekml=1';
@@ -86,20 +88,50 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     });
   }, [data]);
 
+  // Calculate container height after mount to ensure proper dimensions
+  useEffect(() => {
+    const calculateHeight = () => {
+      if (typeof window !== 'undefined') {
+        const viewportHeight = window.innerHeight;
+        const calculatedHeight = Math.max(viewportHeight - 64, 600); // Subtract nav height, min 600px
+        setContainerHeight(`${calculatedHeight}px`);
+        
+        // Check if container has actual dimensions
+        if (mapContainerRef.current) {
+          const rect = mapContainerRef.current.getBoundingClientRect();
+          if (rect.height > 0 && rect.width > 0) {
+            setIsContainerReady(true);
+          }
+        }
+      }
+    };
+
+    // Calculate immediately
+    calculateHeight();
+
+    // Recalculate on window resize
+    window.addEventListener('resize', calculateHeight);
+    
+    // Also check after a short delay to catch any layout changes
+    const timeoutId = setTimeout(() => {
+      calculateHeight();
+      setIsContainerReady(true);
+    }, 100);
+
+    return () => {
+      window.removeEventListener('resize', calculateHeight);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   const mapContainerStyle = useMemo(
-    () => {
-      // Get explicit height from viewport if available, otherwise use minimum
-      const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
-      const calculatedHeight = Math.max(viewportHeight - 64, 600); // Subtract nav height, min 600px
-      
-      return {
-        width: '100%',
-        height: `${calculatedHeight}px`,
-        minHeight: '600px',
-        position: 'relative' as const,
-      };
-    },
-    []
+    () => ({
+      width: '100%',
+      height: containerHeight,
+      minHeight: '600px',
+      position: 'relative' as const,
+    }),
+    [containerHeight]
   );
   
   // Debug: Check container dimensions (development only)
@@ -264,13 +296,32 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     }
   }, [mapInstance, marathonRoutes]);
 
-  // MutationObserver to watch for container DOM changes and trigger resize
+  // ResizeObserver to watch for actual container size changes
   useEffect(() => {
     if (!mapInstance || !mapContainerRef.current) return;
 
-    const observer = new MutationObserver(() => {
+    const resizeObserver = new ResizeObserver(() => {
       if (mapInstance && mapInstance.getDiv()) {
-        // Container changed, trigger resize
+        // Container size changed, trigger resize
+        setTimeout(() => {
+          google.maps.event.trigger(mapInstance, 'resize');
+          const currentCenter = mapInstance.getCenter();
+          const currentZoom = mapInstance.getZoom();
+          if (currentCenter) {
+            mapInstance.setCenter(currentCenter);
+          }
+          if (currentZoom !== null && currentZoom !== undefined) {
+            mapInstance.setZoom(currentZoom);
+          }
+        }, 50);
+      }
+    });
+
+    resizeObserver.observe(mapContainerRef.current);
+
+    // Also use MutationObserver for DOM changes
+    const mutationObserver = new MutationObserver(() => {
+      if (mapInstance && mapInstance.getDiv()) {
         setTimeout(() => {
           google.maps.event.trigger(mapInstance, 'resize');
           const currentCenter = mapInstance.getCenter();
@@ -281,8 +332,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       }
     });
 
-    // Observe changes to the map container
-    observer.observe(mapContainerRef.current, {
+    mutationObserver.observe(mapContainerRef.current, {
       attributes: true,
       attributeFilter: ['style', 'class'],
       childList: true,
@@ -290,7 +340,8 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     });
 
     return () => {
-      observer.disconnect();
+      resizeObserver.disconnect();
+      mutationObserver.disconnect();
     };
   }, [mapInstance]);
 
@@ -381,13 +432,21 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
           if (import.meta.env.DEV) {
             console.log('✅ LoadScript: Google Maps fully loaded');
           }
-          setIsGoogleLoaded(true);
+          // Only set loaded when container is ready
+          if (isContainerReady) {
+            setIsGoogleLoaded(true);
+          } else {
+            // Wait a bit for container to be ready
+            setTimeout(() => {
+              setIsGoogleLoaded(true);
+            }, 200);
+          }
         }}
         onError={(error) => {
           console.error('❌ LoadScript error:', error);
         }}
       >
-        {isGoogleLoaded && (
+        {isGoogleLoaded && isContainerReady && (
           <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={center}
