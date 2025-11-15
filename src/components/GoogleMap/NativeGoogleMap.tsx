@@ -58,26 +58,35 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     });
   }, [data]);
 
-  // Calculate initial bounds from route data BEFORE map loads
-  const initialBounds = useMemo(() => {
+  // Calculate center from raw coordinates (no Google Maps API needed)
+  const routeCenter = useMemo(() => {
     if (marathonRoutes.length === 0) return null;
     
-    const bounds = new google.maps.LatLngBounds();
+    let minLat = Infinity, maxLat = -Infinity;
+    let minLng = Infinity, maxLng = -Infinity;
+    
     marathonRoutes.forEach((route) => {
       route.coordinates.forEach((coord) => {
-        bounds.extend({ lat: coord.lat, lng: coord.lng });
+        minLat = Math.min(minLat, coord.lat);
+        maxLat = Math.max(maxLat, coord.lat);
+        minLng = Math.min(minLng, coord.lng);
+        maxLng = Math.max(maxLng, coord.lng);
       });
     });
-    return bounds;
+    
+    return {
+      center: { 
+        lat: (minLat + maxLat) / 2, 
+        lng: (minLng + maxLng) / 2 
+      },
+      bounds: { minLat, maxLat, minLng, maxLng }
+    };
   }, [marathonRoutes]);
 
-  // Calculate center and zoom from bounds
+  // Use calculated center or default
   const initialMapCenter = useMemo(() => {
-    if (initialBounds) {
-      return initialBounds.getCenter().toJSON();
-    }
-    return center;
-  }, [initialBounds, center]);
+    return routeCenter ? routeCenter.center : center;
+  }, [routeCenter, center]);
 
   // Filter placemarks - only show essential markers
   const marathonPlacemarks = useMemo(() => {
@@ -207,9 +216,15 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       mapDiv.style.minHeight = '600px';
     }
 
-    // Immediately fit bounds if we have route data
-    if (initialBounds) {
-      map.fitBounds(initialBounds, { top: 50, right: 50, bottom: 50, left: 50 });
+    // Immediately fit bounds if we have route data (Google Maps API is now loaded)
+    if (routeCenter) {
+      const bounds = new google.maps.LatLngBounds();
+      const { minLat, maxLat, minLng, maxLng } = routeCenter.bounds;
+      bounds.extend({ lat: minLat, lng: minLng });
+      bounds.extend({ lat: maxLat, lng: maxLng });
+      
+      // Fit bounds synchronously - this happens BEFORE tiles are requested
+      map.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
     }
     
     // Create spectator markers using native Google Maps API
@@ -279,7 +294,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       );
       setLocationWatchId(watchId);
     }
-  }, [handleSpectatorSpotClick, userLocationMarker, initialBounds, containerHeight]);
+  }, [handleSpectatorSpotClick, userLocationMarker, routeCenter, containerHeight]);
 
   const handleSidebarPlacemarkSelect = useCallback((placemark: KMLPlacemark) => {
     setSelectedMarker(placemark);
