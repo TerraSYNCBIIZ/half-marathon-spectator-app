@@ -94,6 +94,9 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     }),
     []
   );
+  
+  // Debug: Check container dimensions
+  console.log('📐 Map container style:', mapContainerStyle);
 
   const mapOptions = useMemo(
     () => ({
@@ -132,7 +135,16 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }, [onSpectatorSpotClick]);
 
   const handleMapLoad = useCallback((map: google.maps.Map) => {
+    console.log('🗺️ Map onLoad fired', { center: map.getCenter(), zoom: map.getZoom() });
     setMapInstance(map);
+    
+    // Force resize and recenter after a delay to ensure tiles load
+    setTimeout(() => {
+      console.log('🔄 Forcing map resize...');
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(map.getCenter()!);
+      console.log('✅ Map resize complete');
+    }, 500);
     
     // Create spectator markers using native Google Maps API
     const markers: google.maps.Marker[] = [];
