@@ -5,7 +5,6 @@ import { useKMLData, KMLPlacemark } from '../../hooks/useKMLData';
 import { spectatorSpots } from '../../data/raceData';
 import MapSidebar from '../Map/MapSidebar';
 import { createMarkerIcon, getMarkerCategory } from '../../utils/markerIcons';
-import { getSpectatorRoutes } from '../../utils/spectatorRoutes';
 import './kmlStyles.css';
 
 interface NativeGoogleMapProps {
@@ -593,32 +592,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
           );
         })}
 
-        {/* Render spectator spot routes */}
-        {mapInstance && getSpectatorRoutes(spectatorSpots).map((route) => (
-          <Polyline
-            key={`spectator-route-${route.fromSpotId}-${route.toSpotId}`}
-            path={route.route}
-            options={{
-              strokeColor: route.color,
-              strokeWeight: 4,
-              strokeOpacity: 0.7,
-              zIndex: 50,
-              icons: [
-                {
-                  icon: {
-                    path: window.google?.maps?.SymbolPath?.FORWARD_CLOSED_ARROW || 0,
-                    scale: 4,
-                    strokeColor: route.color,
-                    fillColor: route.color,
-                    fillOpacity: 1,
-                  },
-                  offset: '100%',
-                  repeat: '100px',
-                },
-              ],
-            }}
-          />
-        ))}
+        {/* Spectator spot routes removed - they caused visual clutter and performance issues */}
 
         {/* Spectator spots are now created using native Google Maps API in handleMapLoad */}
         {/* This avoids React component re-render issues */}
@@ -672,9 +646,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
                 const spot = spectatorSpots.find(s => s.id === selectedSpotMarker);
                 if (!spot) return null;
                 
-                // Find route to this spot
-                const routeToSpot = getSpectatorRoutes(spectatorSpots).find(r => r.toSpotId === spot.id);
-                
                 return (
                   <>
                     <div className="flex items-start space-x-2 mb-2">
@@ -694,18 +665,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
                     </div>
                     <p className="text-sm text-gray-700 mb-3">{spot.description}</p>
                     
-                    {/* Travel info */}
-                    {routeToSpot && (
-                      <div className="bg-blue-50 p-2 rounded mb-2 text-xs">
-                        <div className="font-semibold text-blue-900 mb-1">Travel Info:</div>
-                        <div className="text-blue-700">
-                          {routeToSpot.travelMode === 'walking' ? '🚶' : '🚗'} {routeToSpot.description}
-                        </div>
-                        <div className="text-blue-600 mt-1">
-                          Time: ~{routeToSpot.estimatedTime} min | Distance: {routeToSpot.distance.toFixed(1)} mi
-                        </div>
-                      </div>
-                    )}
+                    {/* Travel info removed - spectator routes have been disabled */}
                     
                     {/* Amenities */}
                     {spot.nearbyCoffee && (
