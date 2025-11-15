@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback, memo } from 'react';
-import { GoogleMap, LoadScript, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
 import { GOOGLE_MAPS_API_KEY, DEFAULT_CENTER, DEFAULT_ZOOM, MAP_STYLES } from '../../config/googleMaps';
 import { useKMLData, KMLPlacemark } from '../../hooks/useKMLData';
 import { spectatorSpots } from '../../data/raceData';
@@ -22,7 +22,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   onMarkerClick,
   onSpectatorSpotClick,
 }) => {
-  const [isGoogleLoaded, setIsGoogleLoaded] = useState(false);
   const [selectedMarker, setSelectedMarker] = useState<KMLPlacemark | null>(null);
   const [selectedSpotMarker, setSelectedSpotMarker] = useState<string | null>(null);
   const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
@@ -286,16 +285,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
         />
       )}
 
-      <LoadScript 
-        googleMapsApiKey={GOOGLE_MAPS_API_KEY}
-        onLoad={() => {
-          console.log('✅ LoadScript: Google Maps fully loaded');
-          setIsGoogleLoaded(true);
-        }}
-        onError={(error) => console.error('❌ LoadScript error:', error)}
-      >
-        {isGoogleLoaded && (
-          <GoogleMap
+      <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={center}
           zoom={zoom}
@@ -492,7 +482,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
           </InfoWindow>
         )}
       </GoogleMap>
-        )}
 
       {/* Loading/Error overlays */}
       {loading && (
@@ -517,7 +506,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
           <p className="text-sm">{error}</p>
         </div>
       )}
-      </LoadScript>
 
       {/* Center on My Location button */}
       {userLocation && (
