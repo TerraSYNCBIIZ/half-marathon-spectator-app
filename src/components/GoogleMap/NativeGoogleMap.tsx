@@ -103,6 +103,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       mapTypeControl: false,
       fullscreenControl: false,
       gestureHandling: 'cooperative',
+      backgroundColor: '#e5e7eb',
     }),
     []
   );

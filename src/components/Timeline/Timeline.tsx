@@ -229,12 +229,12 @@ const Timeline: React.FC<TimelineProps> = ({ items, onItemClick }) => {
                           <Navigation size={16} />
                           <span>Get Directions</span>
                         </a>
-                        {item.spotId && (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              navigate(`/map?spot=${item.spotId}`);
-                            }}
+                    {item.spotId && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/map?spot=${item.spotId}`);
+                          }}
                             className="flex items-center justify-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors"
                           >
                             <MapPin size={16} />
@@ -260,7 +260,7 @@ const Timeline: React.FC<TimelineProps> = ({ items, onItemClick }) => {
                                 window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(amenity.address + ', Charlotte, NC')}`, '_blank');
                               }}
                               className="w-full text-left p-3 bg-white rounded-lg border-2 border-amber-200 hover:border-amber-400 hover:shadow-md transition-all mb-2"
-                            >
+                        >
                               <div className="flex items-center justify-between">
                                 <div className="flex-1">
                                   <div className="font-semibold text-sm text-gray-900 mb-1">{amenity.name}</div>
@@ -340,7 +340,7 @@ const Timeline: React.FC<TimelineProps> = ({ items, onItemClick }) => {
                                 </div>
                                 <Navigation size={20} className="text-blue-600 flex-shrink-0 ml-3" />
                               </div>
-                            </button>
+                        </button>
                           ))}
                         </div>
                       </div>
