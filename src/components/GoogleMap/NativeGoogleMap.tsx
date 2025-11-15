@@ -30,7 +30,15 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
   const [locationWatchId, setLocationWatchId] = useState<number | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const [containerHeight, setContainerHeight] = useState<string>('600px');
+  // Initialize with calculated height immediately if window is available
+  const getInitialHeight = () => {
+    if (typeof window !== 'undefined') {
+      const viewportHeight = window.innerHeight;
+      return `${Math.max(viewportHeight - 64, 600)}px`;
+    }
+    return '600px';
+  };
+  const [containerHeight, setContainerHeight] = useState<string>(getInitialHeight());
 
   // Load KML data from the public URL
   const kmlUrl = 'https://www.google.com/maps/d/kml?mid=1M56qvN_r7OLIShRshLUAAuvcArSQEuo&forcekml=1';
@@ -93,8 +101,17 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       if (typeof window !== 'undefined') {
         const viewportHeight = window.innerHeight;
         const calculatedHeight = Math.max(viewportHeight - 64, 600); // Subtract nav height, min 600px
-        setContainerHeight(`${calculatedHeight}px`);
-        console.log('[MAP] Container height set to:', `${calculatedHeight}px`);
+        const heightString = `${calculatedHeight}px`;
+        setContainerHeight(heightString);
+        console.log('[MAP] Container height set to:', heightString);
+        
+        // CRITICAL: Also directly set height on the container ref if it exists
+        // This ensures the height is applied even if React hasn't re-rendered yet
+        if (mapContainerRef.current) {
+          mapContainerRef.current.style.height = heightString;
+          mapContainerRef.current.style.minHeight = '600px';
+          console.log('[MAP] Directly set container ref height to:', heightString);
+        }
       }
     };
 
@@ -104,31 +121,35 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     // Recalculate on window resize
     window.addEventListener('resize', calculateHeight);
     
-    // Also check after a short delay to catch any layout changes
-    const timeoutId = setTimeout(() => {
-      calculateHeight();
-    }, 100);
+    // Multiple attempts to catch any layout changes
+    const timeouts = [50, 100, 200, 500].map(delay => 
+      setTimeout(calculateHeight, delay)
+    );
 
     return () => {
       window.removeEventListener('resize', calculateHeight);
-      clearTimeout(timeoutId);
+      timeouts.forEach(clearTimeout);
     };
   }, []);
 
   const mapContainerStyle = useMemo(
-    () => ({
-      width: '100%',
-      height: containerHeight,
-      minHeight: '600px',
-      position: 'relative' as const,
-    }),
+    () => {
+      // CRITICAL: Use explicit pixel value, never percentage or calc()
+      const height = containerHeight || '600px';
+      console.log('[MAP] Creating mapContainerStyle with height:', height);
+      return {
+        width: '100%',
+        height: height, // Explicit pixel value
+        minHeight: '600px',
+        position: 'relative' as const,
+        display: 'block', // Ensure it's a block element
+      };
+    },
     [containerHeight]
   );
   
-  // Debug: Check container dimensions (development only)
-  if (import.meta.env.DEV) {
-    console.log('📐 Map container style:', mapContainerStyle);
-  }
+  // Debug: Check container dimensions (always log in production for debugging)
+  console.log('[MAP] Map container style:', mapContainerStyle);
 
   const mapOptions = useMemo(
     () => ({
@@ -174,11 +195,39 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     });
     setMapInstance(map);
     
+    // CRITICAL: Force the map container div to have the correct height immediately
+    const mapDiv = map.getDiv();
+    if (mapDiv && containerHeight) {
+      mapDiv.style.height = containerHeight;
+      mapDiv.style.minHeight = '600px';
+      console.log('[MAP] Forced map div height to:', containerHeight);
+      
+      // Also force parent containers up to 3 levels
+      let parent = mapDiv.parentElement;
+      let depth = 0;
+      while (parent && depth < 3) {
+        if (parent.style) {
+          parent.style.height = containerHeight;
+          parent.style.minHeight = '600px';
+        }
+        parent = parent.parentElement;
+        depth++;
+      }
+    }
+    
     // Force immediate resize and tile refresh
     const forceTileLoad = () => {
       if (map && map.getDiv()) {
         const rect = map.getDiv().getBoundingClientRect();
         console.log('[MAP] Map container dimensions:', { width: rect.width, height: rect.height });
+        
+        // If height is still wrong, force it again
+        if (rect.height < 700 && containerHeight) {
+          const mapDiv = map.getDiv();
+          mapDiv.style.height = containerHeight;
+          mapDiv.style.minHeight = '600px';
+          console.log('[MAP] Corrected map div height from', rect.height, 'to', containerHeight);
+        }
         
         // Trigger resize
         google.maps.event.trigger(map, 'resize');
@@ -429,7 +478,17 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }
 
   return (
-    <div ref={mapContainerRef} style={{ width: '100%', height: containerHeight, position: 'relative', minHeight: '600px' }}>
+    <div 
+      ref={mapContainerRef} 
+      style={{ 
+        width: '100%', 
+        height: containerHeight, 
+        position: 'relative', 
+        minHeight: '600px',
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
       {/* Sidebar */}
       {data && (
         <MapSidebar
@@ -445,16 +504,38 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       <LoadScript 
         googleMapsApiKey={GOOGLE_MAPS_API_KEY}
         onLoad={() => {
-          console.log('[MAP] LoadScript: Google Maps fully loaded');
-          setIsGoogleLoaded(true);
+          console.log('[MAP] LoadScript: Google Maps fully loaded, containerHeight:', containerHeight);
+          // Only set loaded if we have a proper height (not the default 600px)
+          if (containerHeight && containerHeight !== '600px') {
+            setIsGoogleLoaded(true);
+          } else {
+            // Wait a bit for height to be calculated
+            setTimeout(() => {
+              console.log('[MAP] Setting loaded after height calculation, containerHeight:', containerHeight);
+              setIsGoogleLoaded(true);
+            }, 100);
+          }
         }}
         onError={(error) => {
           console.error('[MAP] LoadScript error:', error);
         }}
       >
-        {isGoogleLoaded && (
-          <GoogleMap
-          mapContainerStyle={mapContainerStyle}
+        {isGoogleLoaded && containerHeight && containerHeight !== '600px' && (
+          <div 
+            id="google-map-wrapper"
+            style={{ 
+              width: '100%', 
+              height: containerHeight, 
+              position: 'relative', 
+              flex: 1,
+              minHeight: '600px'
+            }}
+          >
+            <GoogleMap
+            mapContainerStyle={{
+              ...mapContainerStyle,
+              height: containerHeight, // Force explicit pixel height
+            }}
           center={center}
           zoom={zoom}
           options={mapOptions}
@@ -650,6 +731,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
           </InfoWindow>
         )}
       </GoogleMap>
+          </div>
         )}
 
       {/* Loading/Error overlays - Removed because it blocks the map */}
