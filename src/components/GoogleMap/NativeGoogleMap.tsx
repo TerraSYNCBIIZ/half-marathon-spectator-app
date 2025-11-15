@@ -32,7 +32,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
 
   // Load KML data from the public URL
   const kmlUrl = 'https://www.google.com/maps/d/kml?mid=1M56qvN_r7OLIShRshLUAAuvcArSQEuo&forcekml=1';
-  const { data, loading, error } = useKMLData(kmlUrl);
+  const { data, error } = useKMLData(kmlUrl);
 
   // Filter routes to only show full marathon (exclude 5K and half marathon splits)
   const marathonRoutes = useMemo(() => {
@@ -494,15 +494,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       </GoogleMap>
         )}
 
-      {/* Loading/Error overlays */}
-      {loading && (
-        <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-[999]">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#5e6ad2] mx-auto mb-2"></div>
-            <p className="text-gray-600">Loading race map data...</p>
-          </div>
-        </div>
-      )}
+      {/* Loading/Error overlays - Removed because it blocks the map */}
 
       {error && (
         <div className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-red-100 border border-red-400 text-red-800 px-4 py-3 rounded-lg shadow-lg z-[1001] max-w-md">
