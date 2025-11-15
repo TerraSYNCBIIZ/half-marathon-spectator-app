@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback, memo } from 'react';
+import { useMemo, useState, useCallback, memo, useEffect, useRef } from 'react';
 import { GoogleMap, LoadScript, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
 import { GOOGLE_MAPS_API_KEY, DEFAULT_CENTER, DEFAULT_ZOOM, MAP_STYLES } from '../../config/googleMaps';
 import { useKMLData, KMLPlacemark } from '../../hooks/useKMLData';
@@ -29,6 +29,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
   const [locationWatchId, setLocationWatchId] = useState<number | null>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   // Load KML data from the public URL
   const kmlUrl = 'https://www.google.com/maps/d/kml?mid=1M56qvN_r7OLIShRshLUAAuvcArSQEuo&forcekml=1';
@@ -86,12 +87,18 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }, [data]);
 
   const mapContainerStyle = useMemo(
-    () => ({
-      width: '100%',
-      height: '100%',
-      minHeight: '600px',
-      position: 'relative' as const,
-    }),
+    () => {
+      // Get explicit height from viewport if available, otherwise use minimum
+      const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
+      const calculatedHeight = Math.max(viewportHeight - 64, 600); // Subtract nav height, min 600px
+      
+      return {
+        width: '100%',
+        height: `${calculatedHeight}px`,
+        minHeight: '600px',
+        position: 'relative' as const,
+      };
+    },
     []
   );
   
@@ -142,17 +149,27 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     }
     setMapInstance(map);
     
-    // Force resize and recenter after a delay to ensure tiles load
-    setTimeout(() => {
-      if (import.meta.env.DEV) {
-        console.log('🔄 Forcing map resize...');
-      }
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(map.getCenter()!);
-      if (import.meta.env.DEV) {
-        console.log('✅ Map resize complete');
-      }
-    }, 500);
+    // Multiple resize triggers with increasing delays to ensure tiles load in production
+    // This addresses the common issue where tiles don't load due to timing differences
+    const resizeDelays = [100, 500, 1000, 2000];
+    resizeDelays.forEach((delay) => {
+      setTimeout(() => {
+        if (map && map.getDiv()) {
+          if (import.meta.env.DEV) {
+            console.log(`🔄 Forcing map resize at ${delay}ms...`);
+          }
+          google.maps.event.trigger(map, 'resize');
+          const currentCenter = map.getCenter();
+          const currentZoom = map.getZoom();
+          if (currentCenter) {
+            map.setCenter(currentCenter);
+          }
+          if (currentZoom !== null && currentZoom !== undefined) {
+            map.setZoom(currentZoom);
+          }
+        }
+      }, delay);
+    });
     
     // Create spectator markers using native Google Maps API
     const markers: google.maps.Marker[] = [];
@@ -247,6 +264,70 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     }
   }, [mapInstance, marathonRoutes]);
 
+  // MutationObserver to watch for container DOM changes and trigger resize
+  useEffect(() => {
+    if (!mapInstance || !mapContainerRef.current) return;
+
+    const observer = new MutationObserver(() => {
+      if (mapInstance && mapInstance.getDiv()) {
+        // Container changed, trigger resize
+        setTimeout(() => {
+          google.maps.event.trigger(mapInstance, 'resize');
+          const currentCenter = mapInstance.getCenter();
+          if (currentCenter) {
+            mapInstance.setCenter(currentCenter);
+          }
+        }, 100);
+      }
+    });
+
+    // Observe changes to the map container
+    observer.observe(mapContainerRef.current, {
+      attributes: true,
+      attributeFilter: ['style', 'class'],
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [mapInstance]);
+
+  // Post-mount resize effect - triggers resize after component mount and mapInstance is set
+  useEffect(() => {
+    if (!mapInstance) return;
+
+    // Trigger resize after a short delay to catch any missed initializations
+    const timeoutId = setTimeout(() => {
+      if (mapInstance && mapInstance.getDiv()) {
+        google.maps.event.trigger(mapInstance, 'resize');
+        const currentCenter = mapInstance.getCenter();
+        const currentZoom = mapInstance.getZoom();
+        if (currentCenter) {
+          mapInstance.setCenter(currentCenter);
+        }
+        if (currentZoom !== null && currentZoom !== undefined) {
+          mapInstance.setZoom(currentZoom);
+        }
+      }
+    }, 300);
+
+    // Window resize listener as backup
+    const handleResize = () => {
+      if (mapInstance && mapInstance.getDiv()) {
+        google.maps.event.trigger(mapInstance, 'resize');
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [mapInstance]);
+
   // Cleanup location tracking on unmount
   useMemo(() => {
     return () => {
@@ -281,7 +362,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div ref={mapContainerRef} style={{ width: '100%', height: '100%', position: 'relative', minHeight: '600px' }}>
       {/* Sidebar */}
       {data && (
         <MapSidebar

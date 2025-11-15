@@ -29,7 +29,15 @@ const MapPage = () => {
   }, []);
 
   return (
-    <div className="h-[calc(100vh-4rem)] bg-[#F9FAFB] overflow-hidden" style={{ minHeight: '600px', height: 'calc(100vh - 4rem)' }}>
+    <div 
+      className="bg-[#F9FAFB] overflow-hidden" 
+      style={{ 
+        width: '100%',
+        height: typeof window !== 'undefined' ? `${window.innerHeight - 64}px` : 'calc(100vh - 4rem)',
+        minHeight: '600px',
+        position: 'relative'
+      }}
+    >
       <NativeGoogleMap
         center={mapCenter}
         zoom={selectedSpotId ? 15 : 13}
