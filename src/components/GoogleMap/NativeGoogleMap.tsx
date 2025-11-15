@@ -95,8 +95,10 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     []
   );
   
-  // Debug: Check container dimensions
-  console.log('📐 Map container style:', mapContainerStyle);
+  // Debug: Check container dimensions (development only)
+  if (import.meta.env.DEV) {
+    console.log('📐 Map container style:', mapContainerStyle);
+  }
 
   const mapOptions = useMemo(
     () => ({
@@ -135,15 +137,21 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }, [onSpectatorSpotClick]);
 
   const handleMapLoad = useCallback((map: google.maps.Map) => {
-    console.log('🗺️ Map onLoad fired', { center: map.getCenter(), zoom: map.getZoom() });
+    if (import.meta.env.DEV) {
+      console.log('🗺️ Map onLoad fired', { center: map.getCenter(), zoom: map.getZoom() });
+    }
     setMapInstance(map);
     
     // Force resize and recenter after a delay to ensure tiles load
     setTimeout(() => {
-      console.log('🔄 Forcing map resize...');
+      if (import.meta.env.DEV) {
+        console.log('🔄 Forcing map resize...');
+      }
       google.maps.event.trigger(map, 'resize');
       map.setCenter(map.getCenter()!);
-      console.log('✅ Map resize complete');
+      if (import.meta.env.DEV) {
+        console.log('✅ Map resize complete');
+      }
     }, 500);
     
     // Create spectator markers using native Google Maps API
@@ -289,10 +297,14 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       <LoadScript 
         googleMapsApiKey={GOOGLE_MAPS_API_KEY}
         onLoad={() => {
-          console.log('✅ LoadScript: Google Maps fully loaded');
+          if (import.meta.env.DEV) {
+            console.log('✅ LoadScript: Google Maps fully loaded');
+          }
           setIsGoogleLoaded(true);
         }}
-        onError={(error) => console.error('❌ LoadScript error:', error)}
+        onError={(error) => {
+          console.error('❌ LoadScript error:', error);
+        }}
       >
         {isGoogleLoaded && (
           <GoogleMap
