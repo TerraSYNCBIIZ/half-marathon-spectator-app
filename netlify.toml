@@ -9,3 +9,5 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  # IMPORTANT: Set this in Netlify Dashboard under Site Settings > Build & Deploy > Environment Variables
+  # VITE_GOOGLE_MAPS_API_KEY = "your_api_key_here"
