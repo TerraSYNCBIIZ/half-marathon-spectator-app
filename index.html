@@ -8,6 +8,73 @@
     <meta name="theme-color" content="#4F46E5" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <title>Half Marathon Spectator Guide</title>
+    
+    <!-- CRITICAL FIX: Force Google Maps tiles to render in production -->
+    <style>
+      /* Fix 1: Override Tailwind's max-width on images */
+      .gm-style img,
+      .gm-style canvas,
+      img[src*="maps.googleapis.com"],
+      img[src*="maps.gstatic.com"],
+      img[src*="googleapis.com"],
+      img[src*="gstatic.com"] {
+        max-width: none !important;
+        max-height: none !important;
+        width: auto !important;
+        height: auto !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        transform: none !important;
+        image-rendering: auto !important;
+        box-sizing: content-box !important;
+      }
+      
+      /* Fix 2: Ensure map container and children are visible */
+      .gm-style,
+      .gm-style > div,
+      .gm-style > div > div,
+      .gm-style > div > div > div,
+      div[class*="gm-"] {
+        position: absolute !important;
+        overflow: visible !important;
+        display: block !important;
+        visibility: visible !important;
+        box-sizing: content-box !important;
+      }
+      
+      /* Fix 3: Force all absolutely positioned images to show */
+      div[style*="position: absolute"] img,
+      div[style*="position: absolute"] canvas {
+        max-width: none !important;
+        visibility: visible !important;
+        display: block !important;
+        opacity: 1 !important;
+        box-sizing: content-box !important;
+      }
+      
+      /* Fix 4: Ensure map controls are visible */
+      .gm-control-active,
+      .gm-bundled-control,
+      .gmnoprint {
+        display: block !important;
+        visibility: visible !important;
+        box-sizing: content-box !important;
+      }
+      
+      /* Fix 5: Force map tiles specifically */
+      div[aria-label="Map"],
+      div[role="region"],
+      div[draggable="false"] {
+        box-sizing: content-box !important;
+      }
+      
+      div[draggable="false"] img {
+        max-width: none !important;
+        box-sizing: content-box !important;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

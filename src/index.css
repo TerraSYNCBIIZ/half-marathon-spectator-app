@@ -18,6 +18,15 @@
     /* Prevent pull-to-refresh on mobile */
     overscroll-behavior-y: none;
   }
+
+  /* Critical fix for Google Maps tiles in production */
+  .gm-style * {
+    box-sizing: content-box !important;
+  }
+  
+  .gm-style img {
+    max-width: none !important;
+  }
   
   h1 {
     @apply text-[2.25rem] leading-[2.5rem] font-bold text-[#1F2937];
