@@ -174,40 +174,47 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     });
     setMapInstance(map);
     
-    // Force immediate resize to ensure tiles load
-    setTimeout(() => {
+    // Force immediate resize and tile refresh
+    const forceTileLoad = () => {
       if (map && map.getDiv()) {
         const rect = map.getDiv().getBoundingClientRect();
         console.log('[MAP] Map container dimensions:', { width: rect.width, height: rect.height });
+        
+        // Trigger resize
         google.maps.event.trigger(map, 'resize');
-        const currentCenter = map.getCenter();
-        const currentZoom = map.getZoom();
-        if (currentCenter) {
-          map.setCenter(currentCenter);
-        }
-        if (currentZoom !== null && currentZoom !== undefined) {
+        
+        // Force zoom change to trigger tile reload
+        const currentZoom = map.getZoom() || 13;
+        map.setZoom(currentZoom + 0.0001);
+        setTimeout(() => {
           map.setZoom(currentZoom);
+        }, 10);
+        
+        // Recenter to force tile refresh
+        const currentCenter = map.getCenter();
+        if (currentCenter) {
+          const lat = currentCenter.lat();
+          const lng = currentCenter.lng();
+          map.setCenter({ lat: lat + 0.000001, lng: lng });
+          setTimeout(() => {
+            map.setCenter({ lat, lng });
+          }, 10);
         }
-        console.log('[MAP] Initial resize triggered');
+        
+        console.log('[MAP] Tile refresh triggered');
       }
-    }, 50);
+    };
     
-    // Multiple resize triggers with increasing delays to ensure tiles load in production
-    // This addresses the common issue where tiles don't load due to timing differences
-    const resizeDelays = [100, 300, 500, 1000, 2000];
+    // Immediate attempt
+    setTimeout(forceTileLoad, 50);
+    
+    // Multiple attempts with increasing delays
+    const resizeDelays = [100, 200, 300, 500, 1000, 2000];
     resizeDelays.forEach((delay) => {
       setTimeout(() => {
         if (map && map.getDiv()) {
           console.log(`[MAP] Resize triggered at ${delay}ms`);
-          google.maps.event.trigger(map, 'resize');
-          const currentCenter = map.getCenter();
-          const currentZoom = map.getZoom();
-          if (currentCenter) {
-            map.setCenter(currentCenter);
-          }
-          if (currentZoom !== null && currentZoom !== undefined) {
-            map.setZoom(currentZoom);
-          }
+          forceTileLoad();
         }
       }, delay);
     });
@@ -422,7 +429,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }
 
   return (
-    <div ref={mapContainerRef} style={{ width: '100%', height: '100%', position: 'relative', minHeight: '600px' }}>
+    <div ref={mapContainerRef} style={{ width: '100%', height: containerHeight, position: 'relative', minHeight: '600px' }}>
       {/* Sidebar */}
       {data && (
         <MapSidebar
