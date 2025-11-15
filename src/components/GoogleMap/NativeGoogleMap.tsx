@@ -269,13 +269,25 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   useEffect(() => {
     if (!mapInstance || marathonRoutes.length === 0) return;
 
-    let hasSetBounds = false;
+    let isMounted = true;
+    let attemptCount = 0;
+    const maxAttempts = 10;
 
-    // Wait for the map to be fully idle (tiles loaded, animations complete)
-    const idleListener = google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
-      if (hasSetBounds) return;
-      hasSetBounds = true;
+    const tryFitBounds = () => {
+      if (!isMounted || attemptCount >= maxAttempts) return;
+      attemptCount++;
 
+      // Check if map container has valid dimensions
+      const mapDiv = mapInstance.getDiv();
+      const rect = mapDiv?.getBoundingClientRect();
+      
+      if (!rect || rect.width < 100 || rect.height < 100) {
+        // Container not ready yet, try again
+        requestAnimationFrame(tryFitBounds);
+        return;
+      }
+
+      // Map container has valid dimensions, now fit bounds
       const bounds = new google.maps.LatLngBounds();
       marathonRoutes.forEach((route) => {
         route.coordinates.forEach((coord) => {
@@ -283,11 +295,20 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
         });
       });
       
-      // Fit bounds with padding - map is now fully ready
+      // Fit bounds with padding
       mapInstance.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
+    };
+
+    // Wait for map to be idle, then use requestAnimationFrame to ensure layout is complete
+    const idleListener = google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
+      // Use RAF to wait for browser to finish any pending layout/paint
+      requestAnimationFrame(() => {
+        requestAnimationFrame(tryFitBounds);
+      });
     });
 
     return () => {
+      isMounted = false;
       if (idleListener) {
         google.maps.event.removeListener(idleListener);
       }
