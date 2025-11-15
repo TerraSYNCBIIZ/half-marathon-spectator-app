@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import NativeGoogleMap from '../components/GoogleMap/NativeGoogleMap';
 import { KMLPlacemark } from '../hooks/useKMLData';
@@ -20,9 +20,13 @@ const MapPage = () => {
     return { lat: 35.2174, lng: -80.8346 };
   }, [selectedSpot]);
 
-  const handleMarkerClick = (placemark: KMLPlacemark) => {
+  const handleMarkerClick = useCallback((placemark: KMLPlacemark) => {
     console.log('KML Marker clicked:', placemark.name);
-  };
+  }, []);
+
+  const handleSpectatorSpotClick = useCallback((spotId: string) => {
+    console.log('Spectator spot clicked:', spotId);
+  }, []);
 
   return (
     <div className="h-[calc(100vh-4rem)] bg-[#F9FAFB] overflow-hidden" style={{ minHeight: '600px', height: 'calc(100vh - 4rem)' }}>
@@ -31,9 +35,7 @@ const MapPage = () => {
         zoom={selectedSpotId ? 15 : 13}
         selectedSpotId={selectedSpotId}
         onMarkerClick={handleMarkerClick}
-        onSpectatorSpotClick={(spotId: string) => {
-          console.log('Spectator spot clicked:', spotId);
-        }}
+        onSpectatorSpotClick={handleSpectatorSpotClick}
       />
     </div>
   );
