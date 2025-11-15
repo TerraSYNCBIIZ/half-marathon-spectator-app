@@ -186,13 +186,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       mapDiv.style.minHeight = '600px';
     }
     
-    // Single gentle resize after a short delay to ensure tiles load
-    setTimeout(() => {
-      if (map) {
-        google.maps.event.trigger(map, 'resize');
-      }
-    }, 300);
-    
     // Create spectator markers using native Google Maps API
     const markers: google.maps.Marker[] = [];
     
@@ -276,8 +269,13 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   useEffect(() => {
     if (!mapInstance || marathonRoutes.length === 0) return;
 
-    // Wait for map to fully initialize and tiles to load before fitting bounds
-    const fitBoundsTimeout = setTimeout(() => {
+    let hasSetBounds = false;
+
+    // Wait for the map to be fully idle (tiles loaded, animations complete)
+    const idleListener = google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
+      if (hasSetBounds) return;
+      hasSetBounds = true;
+
       const bounds = new google.maps.LatLngBounds();
       marathonRoutes.forEach((route) => {
         route.coordinates.forEach((coord) => {
@@ -285,16 +283,15 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
         });
       });
       
-      // Fit bounds with padding
+      // Fit bounds with padding - map is now fully ready
       mapInstance.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
-      
-      // Trigger a gentle resize after fitting to ensure tiles load
-      setTimeout(() => {
-        google.maps.event.trigger(mapInstance, 'resize');
-      }, 100);
-    }, 500); // Wait 500ms for map to be stable
+    });
 
-    return () => clearTimeout(fitBoundsTimeout);
+    return () => {
+      if (idleListener) {
+        google.maps.event.removeListener(idleListener);
+      }
+    };
   }, [mapInstance, marathonRoutes]);
 
   // Simplified resize handling - only responds to actual window resize
