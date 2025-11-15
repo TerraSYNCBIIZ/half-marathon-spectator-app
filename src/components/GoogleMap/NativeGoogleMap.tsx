@@ -57,7 +57,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     });
   }, [data]);
 
-  // Calculate center from raw coordinates (no Google Maps API needed)
+  // Calculate bounds from raw coordinates (no Google Maps API needed)
   const routeCenter = useMemo(() => {
     if (marathonRoutes.length === 0) return null;
     
@@ -74,18 +74,9 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     });
     
     return {
-      center: { 
-        lat: (minLat + maxLat) / 2, 
-        lng: (minLng + maxLng) / 2 
-      },
       bounds: { minLat, maxLat, minLng, maxLng }
     };
   }, [marathonRoutes]);
-
-  // Use calculated center or default
-  const initialMapCenter = useMemo(() => {
-    return routeCenter ? routeCenter.center : center;
-  }, [routeCenter, center]);
 
   // Filter placemarks - only show essential markers
   const marathonPlacemarks = useMemo(() => {
@@ -420,7 +411,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
               ...mapContainerStyle,
               height: containerHeight, // Force explicit pixel height
             }}
-          center={initialMapCenter}
           options={mapOptions}
           onLoad={handleMapLoad}
         >
