@@ -128,6 +128,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
   }, [onSpectatorSpotClick]);
 
   const handleMapLoad = useCallback((map: google.maps.Map) => {
+    console.log('🗺️ Google Map loaded successfully!', map);
     setMapInstance(map);
     
     // Create spectator markers using native Google Maps API
@@ -244,6 +245,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
   }, [mapInstance, userLocation]);
 
   if (!GOOGLE_MAPS_API_KEY) {
+    console.error('❌ Google Maps API key is missing!');
     return (
       <div className="h-full w-full flex items-center justify-center bg-gray-100">
         <div className="text-center p-6">
@@ -255,6 +257,8 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
       </div>
     );
   }
+  
+  console.log('✅ Google Maps API key found:', GOOGLE_MAPS_API_KEY?.substring(0, 10) + '...');
 
   return (
     <>

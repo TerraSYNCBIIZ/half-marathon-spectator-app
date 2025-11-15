@@ -25,7 +25,7 @@ const MapPage = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-4rem)] bg-[#F9FAFB] overflow-hidden">
+    <div className="h-[calc(100vh-4rem)] bg-[#F9FAFB] overflow-hidden" style={{ minHeight: '600px', height: 'calc(100vh - 4rem)' }}>
       <NativeGoogleMap
         center={mapCenter}
         zoom={selectedSpotId ? 15 : 13}
