@@ -103,56 +103,42 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     const calculateHeight = () => {
       if (typeof window !== 'undefined') {
         const viewportHeight = window.innerHeight;
-        const calculatedHeight = Math.max(viewportHeight - 64, 600); // Subtract nav height, min 600px
+        const calculatedHeight = Math.max(viewportHeight - 64, 600);
         const heightString = `${calculatedHeight}px`;
         setContainerHeight(heightString);
-        console.log('[MAP] Container height set to:', heightString);
         
-        // CRITICAL: Also directly set height on the container ref if it exists
-        // This ensures the height is applied even if React hasn't re-rendered yet
         if (mapContainerRef.current) {
           mapContainerRef.current.style.height = heightString;
           mapContainerRef.current.style.minHeight = '600px';
-          console.log('[MAP] Directly set container ref height to:', heightString);
         }
       }
     };
 
-    // Calculate immediately
+    // Calculate once on mount
     calculateHeight();
 
-    // Recalculate on window resize
-    window.addEventListener('resize', calculateHeight);
-    
-    // Multiple attempts to catch any layout changes
-    const timeouts = [50, 100, 200, 500].map(delay => 
-      setTimeout(calculateHeight, delay)
-    );
+    // Debounced resize handler
+    let resizeTimeout: number;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(calculateHeight, 150);
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', calculateHeight);
-      timeouts.forEach(clearTimeout);
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimeout);
     };
   }, []);
 
-  const mapContainerStyle = useMemo(
-    () => {
-      // CRITICAL: Use explicit pixel value, never percentage or calc()
-      const height = containerHeight || '600px';
-      console.log('[MAP] Creating mapContainerStyle with height:', height);
-      return {
-        width: '100%',
-        height: height, // Explicit pixel value
-        minHeight: '600px',
-        position: 'relative' as const,
-        display: 'block', // Ensure it's a block element
-      };
-    },
-    [containerHeight]
-  );
-  
-  // Debug: Check container dimensions (always log in production for debugging)
-  console.log('[MAP] Map container style:', mapContainerStyle);
+  const mapContainerStyle = useMemo(() => ({
+    width: '100%',
+    height: containerHeight || '600px',
+    minHeight: '600px',
+    position: 'relative' as const,
+    display: 'block',
+  }), [containerHeight]);
 
   const mapOptions = useMemo(
     () => ({
@@ -191,100 +177,21 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }, [onSpectatorSpotClick]);
 
   const handleMapLoad = useCallback((map: google.maps.Map) => {
-    const containerRect = map.getDiv()?.getBoundingClientRect();
-    console.log('[MAP] Map onLoad fired', `center: ${JSON.stringify(map.getCenter()?.toJSON())}, zoom: ${map.getZoom()}, containerSize: width: ${containerRect?.width}px, height: ${containerRect?.height}px`);
     setMapInstance(map);
     
-    // CRITICAL: Force the map container div to have the correct height immediately
+    // Set container height once
     const mapDiv = map.getDiv();
     if (mapDiv && containerHeight) {
       mapDiv.style.height = containerHeight;
       mapDiv.style.minHeight = '600px';
-      console.log('[MAP] Forced map div height to:', containerHeight);
-      
-      // Also force parent containers up to 3 levels
-      let parent = mapDiv.parentElement;
-      let depth = 0;
-      while (parent && depth < 3) {
-        if (parent.style) {
-          parent.style.height = containerHeight;
-          parent.style.minHeight = '600px';
-        }
-        parent = parent.parentElement;
-        depth++;
-      }
     }
     
-    // Force immediate resize and tile refresh
-    const forceTileLoad = () => {
-      if (map && map.getDiv()) {
-        const rect = map.getDiv().getBoundingClientRect();
-        console.log('[MAP] Map container dimensions:', `width: ${rect.width}px, height: ${rect.height}px`);
-        
-        // If height is still wrong, force it again
-        if (rect.height < 700 && containerHeight) {
-          const mapDiv = map.getDiv();
-          mapDiv.style.height = containerHeight;
-          mapDiv.style.minHeight = '600px';
-          // Force all parent divs too
-          let parent = mapDiv.parentElement;
-          let depth = 0;
-          while (parent && depth < 5) {
-            if (parent.style) {
-              parent.style.height = containerHeight;
-              parent.style.minHeight = '600px';
-            }
-            parent = parent.parentElement;
-            depth++;
-          }
-          console.log(`[MAP] Corrected map div height from ${rect.height}px to ${containerHeight} (forced ${depth} parent levels)`);
-          
-          // Force a more aggressive resize
-          setTimeout(() => {
-            google.maps.event.trigger(map, 'resize');
-            const currentZoom = map.getZoom() || 13;
-            map.setZoom(currentZoom);
-          }, 50);
-        }
-        
-        // Trigger resize
+    // Single gentle resize after a short delay to ensure tiles load
+    setTimeout(() => {
+      if (map) {
         google.maps.event.trigger(map, 'resize');
-        
-        // Force zoom change to trigger tile reload
-        const currentZoom = map.getZoom() || 13;
-        map.setZoom(currentZoom + 0.0001);
-        setTimeout(() => {
-          map.setZoom(currentZoom);
-        }, 10);
-        
-        // Recenter to force tile refresh
-        const currentCenter = map.getCenter();
-        if (currentCenter) {
-          const lat = currentCenter.lat();
-          const lng = currentCenter.lng();
-          map.setCenter({ lat: lat + 0.000001, lng: lng });
-          setTimeout(() => {
-            map.setCenter({ lat, lng });
-          }, 10);
-        }
-        
-        console.log('[MAP] Tile refresh triggered');
       }
-    };
-    
-    // Immediate attempt
-    setTimeout(forceTileLoad, 50);
-    
-    // Multiple attempts with increasing delays
-    const resizeDelays = [100, 200, 300, 500, 1000, 2000];
-    resizeDelays.forEach((delay) => {
-      setTimeout(() => {
-        if (map && map.getDiv()) {
-          console.log(`[MAP] Resize triggered at ${delay}ms`);
-          forceTileLoad();
-        }
-      }, delay);
-    });
+    }, 300);
     
     // Create spectator markers using native Google Maps API
     const markers: google.maps.Marker[] = [];
@@ -379,86 +286,25 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     }
   }, [mapInstance, marathonRoutes]);
 
-  // ResizeObserver to watch for actual container size changes
-  useEffect(() => {
-    if (!mapInstance || !mapContainerRef.current) return;
-
-    const resizeObserver = new ResizeObserver(() => {
-      if (mapInstance && mapInstance.getDiv()) {
-        // Container size changed, trigger resize
-        setTimeout(() => {
-          google.maps.event.trigger(mapInstance, 'resize');
-          const currentCenter = mapInstance.getCenter();
-          const currentZoom = mapInstance.getZoom();
-          if (currentCenter) {
-            mapInstance.setCenter(currentCenter);
-          }
-          if (currentZoom !== null && currentZoom !== undefined) {
-            mapInstance.setZoom(currentZoom);
-          }
-        }, 50);
-      }
-    });
-
-    resizeObserver.observe(mapContainerRef.current);
-
-    // Also use MutationObserver for DOM changes
-    const mutationObserver = new MutationObserver(() => {
-      if (mapInstance && mapInstance.getDiv()) {
-        setTimeout(() => {
-          google.maps.event.trigger(mapInstance, 'resize');
-          const currentCenter = mapInstance.getCenter();
-          if (currentCenter) {
-            mapInstance.setCenter(currentCenter);
-          }
-        }, 100);
-      }
-    });
-
-    mutationObserver.observe(mapContainerRef.current, {
-      attributes: true,
-      attributeFilter: ['style', 'class'],
-      childList: true,
-      subtree: true,
-    });
-
-    return () => {
-      resizeObserver.disconnect();
-      mutationObserver.disconnect();
-    };
-  }, [mapInstance]);
-
-  // Post-mount resize effect - triggers resize after component mount and mapInstance is set
+  // Simplified resize handling - only responds to actual window resize
   useEffect(() => {
     if (!mapInstance) return;
 
-    // Trigger resize after a short delay to catch any missed initializations
-    const timeoutId = setTimeout(() => {
-      if (mapInstance && mapInstance.getDiv()) {
-        google.maps.event.trigger(mapInstance, 'resize');
-        const currentCenter = mapInstance.getCenter();
-        const currentZoom = mapInstance.getZoom();
-        if (currentCenter) {
-          mapInstance.setCenter(currentCenter);
-        }
-        if (currentZoom !== null && currentZoom !== undefined) {
-          mapInstance.setZoom(currentZoom);
-        }
-      }
-    }, 300);
-
-    // Window resize listener as backup
+    let resizeTimeout: number;
     const handleResize = () => {
-      if (mapInstance && mapInstance.getDiv()) {
-        google.maps.event.trigger(mapInstance, 'resize');
-      }
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (mapInstance) {
+          google.maps.event.trigger(mapInstance, 'resize');
+        }
+      }, 200);
     };
 
     window.addEventListener('resize', handleResize);
 
     return () => {
-      clearTimeout(timeoutId);
       window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimeout);
     };
   }, [mapInstance]);
 
@@ -522,23 +368,13 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       <LoadScript 
         googleMapsApiKey={GOOGLE_MAPS_API_KEY}
         onLoad={() => {
-          console.log('[MAP] LoadScript: Google Maps fully loaded, containerHeight:', containerHeight);
-          // Only set loaded if we have a proper height (not the default 600px)
-          if (containerHeight && containerHeight !== '600px') {
-            setIsGoogleLoaded(true);
-          } else {
-            // Wait a bit for height to be calculated
-            setTimeout(() => {
-              console.log('[MAP] Setting loaded after height calculation, containerHeight:', containerHeight);
-              setIsGoogleLoaded(true);
-            }, 100);
-          }
+          setIsGoogleLoaded(true);
         }}
         onError={(error) => {
           console.error('[MAP] LoadScript error:', error);
         }}
       >
-        {isGoogleLoaded && containerHeight && containerHeight !== '600px' && (
+        {isGoogleLoaded && (
           <div 
             id="google-map-wrapper"
             style={{ 
