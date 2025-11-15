@@ -58,6 +58,27 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     });
   }, [data]);
 
+  // Calculate initial bounds from route data BEFORE map loads
+  const initialBounds = useMemo(() => {
+    if (marathonRoutes.length === 0) return null;
+    
+    const bounds = new google.maps.LatLngBounds();
+    marathonRoutes.forEach((route) => {
+      route.coordinates.forEach((coord) => {
+        bounds.extend({ lat: coord.lat, lng: coord.lng });
+      });
+    });
+    return bounds;
+  }, [marathonRoutes]);
+
+  // Calculate center and zoom from bounds
+  const initialMapCenter = useMemo(() => {
+    if (initialBounds) {
+      return initialBounds.getCenter().toJSON();
+    }
+    return center;
+  }, [initialBounds, center]);
+
   // Filter placemarks - only show essential markers
   const marathonPlacemarks = useMemo(() => {
     if (!data) return [];
@@ -185,6 +206,11 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       mapDiv.style.height = containerHeight;
       mapDiv.style.minHeight = '600px';
     }
+
+    // Immediately fit bounds if we have route data
+    if (initialBounds) {
+      map.fitBounds(initialBounds, { top: 50, right: 50, bottom: 50, left: 50 });
+    }
     
     // Create spectator markers using native Google Maps API
     const markers: google.maps.Marker[] = [];
@@ -253,7 +279,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       );
       setLocationWatchId(watchId);
     }
-  }, [handleSpectatorSpotClick, userLocationMarker]);
+  }, [handleSpectatorSpotClick, userLocationMarker, initialBounds, containerHeight]);
 
   const handleSidebarPlacemarkSelect = useCallback((placemark: KMLPlacemark) => {
     setSelectedMarker(placemark);
@@ -265,55 +291,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }, [mapInstance]);
 
 
-  // Fit map to bounds after map and routes are fully loaded
-  useEffect(() => {
-    if (!mapInstance || marathonRoutes.length === 0) return;
-
-    let isMounted = true;
-    let attemptCount = 0;
-    const maxAttempts = 10;
-
-    const tryFitBounds = () => {
-      if (!isMounted || attemptCount >= maxAttempts) return;
-      attemptCount++;
-
-      // Check if map container has valid dimensions
-      const mapDiv = mapInstance.getDiv();
-      const rect = mapDiv?.getBoundingClientRect();
-      
-      if (!rect || rect.width < 100 || rect.height < 100) {
-        // Container not ready yet, try again
-        requestAnimationFrame(tryFitBounds);
-        return;
-      }
-
-      // Map container has valid dimensions, now fit bounds
-      const bounds = new google.maps.LatLngBounds();
-      marathonRoutes.forEach((route) => {
-        route.coordinates.forEach((coord) => {
-          bounds.extend({ lat: coord.lat, lng: coord.lng });
-        });
-      });
-      
-      // Fit bounds with padding
-      mapInstance.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
-    };
-
-    // Wait for map to be idle, then use requestAnimationFrame to ensure layout is complete
-    const idleListener = google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
-      // Use RAF to wait for browser to finish any pending layout/paint
-      requestAnimationFrame(() => {
-        requestAnimationFrame(tryFitBounds);
-      });
-    });
-
-    return () => {
-      isMounted = false;
-      if (idleListener) {
-        google.maps.event.removeListener(idleListener);
-      }
-    };
-  }, [mapInstance, marathonRoutes]);
+  // No longer needed - bounds are set immediately in handleMapLoad
 
   // Simplified resize handling - only responds to actual window resize
   useEffect(() => {
@@ -419,7 +397,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
               ...mapContainerStyle,
               height: containerHeight, // Force explicit pixel height
             }}
-          center={center}
+          center={initialMapCenter}
           zoom={zoom}
           options={mapOptions}
           onLoad={handleMapLoad}
