@@ -8,12 +8,16 @@ a[href^="https://www.google.com/maps"],
   display: none !important;
 }
 
-/* Hide Google logo */
-img[src*="googleapis.com/maps"],
-img[alt*="Google"],
-.gm-style > div:first-child > div:first-child {
+/* Hide Google logo - but NOT the map tiles! */
+/* Map tiles come from googleapis.com, so we need to be very specific */
+img[alt="Google"],
+img[src*="googleapis.com/vt/icon"],
+.gm-style > div:first-child > div:last-child > div:first-child {
   display: none !important;
 }
+
+/* CRITICAL: DO NOT hide map tile images */
+/* Tiles are served from googleapis.com/vt? and must be visible */
 
 /* Hide keyboard shortcuts and map data */
 .gm-style-cc,
@@ -87,13 +91,12 @@ a[href*="mapdata"] {
   max-height: none !important;
 }
 
-/* Ensure map container has proper dimensions */
-div[style*="width: 100%"] {
-  height: 100% !important;
-}
+/* Ensure map container has proper dimensions - but don't force 100% which can cause issues */
+/* The mapContainerStyle will set explicit pixel height */
 
-/* Force map tiles container to render */
+/* Force map tiles container to render - use min-height to ensure it's at least visible */
 .gm-style > div {
+  min-height: 600px !important;
   height: 100% !important;
   width: 100% !important;
   position: relative !important;
@@ -132,6 +135,13 @@ div[style*="width: 100%"] {
 .gm-style > div > div > div > div {
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+/* CRITICAL: Force the actual Google Maps container div to use explicit height */
+#google-map-wrapper > div,
+#google-map-wrapper > div > div {
+  height: inherit !important;
+  min-height: 600px !important;
 }
 
 /* Ensure KML markers are visible */
