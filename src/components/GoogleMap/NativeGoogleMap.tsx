@@ -272,18 +272,29 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }, [mapInstance]);
 
 
-  // Fit map to bounds if we have data
-  useMemo(() => {
-    if (mapInstance && marathonRoutes.length > 0) {
+  // Fit map to bounds after map and routes are fully loaded
+  useEffect(() => {
+    if (!mapInstance || marathonRoutes.length === 0) return;
+
+    // Wait for map to fully initialize and tiles to load before fitting bounds
+    const fitBoundsTimeout = setTimeout(() => {
       const bounds = new google.maps.LatLngBounds();
-      marathonRoutes.forEach((r) => {
-        r.coordinates.forEach((c) => {
-          bounds.extend({ lat: c.lat, lng: c.lng });
+      marathonRoutes.forEach((route) => {
+        route.coordinates.forEach((coord) => {
+          bounds.extend({ lat: coord.lat, lng: coord.lng });
         });
       });
-      // Add some padding
+      
+      // Fit bounds with padding
       mapInstance.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
-    }
+      
+      // Trigger a gentle resize after fitting to ensure tiles load
+      setTimeout(() => {
+        google.maps.event.trigger(mapInstance, 'resize');
+      }, 100);
+    }, 500); // Wait 500ms for map to be stable
+
+    return () => clearTimeout(fitBoundsTimeout);
   }, [mapInstance, marathonRoutes]);
 
   // Simplified resize handling - only responds to actual window resize
