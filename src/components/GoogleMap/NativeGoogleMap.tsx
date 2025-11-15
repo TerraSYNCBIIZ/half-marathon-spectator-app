@@ -28,7 +28,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   const [userLocationMarker, setUserLocationMarker] = useState<google.maps.Marker | null>(null);
   const [locationWatchId, setLocationWatchId] = useState<number | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const hasInitiallyFitBounds = useRef(false); // Track if we've done the first bounds fit
   // Initialize with calculated height immediately if window is available
   const getInitialHeight = () => {
     if (typeof window !== 'undefined') {
@@ -305,40 +304,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     }
   }, [mapInstance]);
 
-
-  // CRITICAL: Redundant bounds fit on first load to mimic tab-switch behavior
-  // This is the "second pass" that ensures proper layout
-  useEffect(() => {
-    if (!mapInstance || !routeCenter || hasInitiallyFitBounds.current) return;
-
-    // Wait for map to be fully idle (first render complete)
-    const idleListener = google.maps.event.addListenerOnce(mapInstance, 'idle', () => {
-      // Mark that we're doing the initial fit
-      hasInitiallyFitBounds.current = true;
-
-      // Wait for browser to finish any pending layout (mimics tab switch)
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (!mapInstance || !routeCenter) return;
-
-          // Re-create bounds and fit again (this is what happens on tab switch)
-          const bounds = new google.maps.LatLngBounds();
-          const { minLat, maxLat, minLng, maxLng } = routeCenter.bounds;
-          bounds.extend({ lat: minLat, lng: minLng });
-          bounds.extend({ lat: maxLat, lng: maxLng });
-          
-          // Second fitBounds - ensures everything is settled
-          mapInstance.fitBounds(bounds, { top: 50, right: 50, bottom: 50, left: 50 });
-        });
-      });
-    });
-
-    return () => {
-      if (idleListener) {
-        google.maps.event.removeListener(idleListener);
-      }
-    };
-  }, [mapInstance, routeCenter]);
 
   // Simplified resize handling - only responds to actual window resize
   useEffect(() => {
