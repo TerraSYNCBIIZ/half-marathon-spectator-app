@@ -44,14 +44,18 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   const kmlUrl = 'https://www.google.com/maps/d/kml?mid=1M56qvN_r7OLIShRshLUAAuvcArSQEuo&forcekml=1';
   const { data, error } = useKMLData(kmlUrl);
 
-  // Filter routes to only show full marathon (exclude 5K and half marathon splits)
+  // Filter routes to show ONLY the full marathon route (both halves combined)
   const marathonRoutes = useMemo(() => {
     if (!data) return [];
     return data.routes.filter(route => {
       const name = route.name.toLowerCase();
-      // Only show routes that contain "2nd half" or full marathon routes
+      
       // Exclude 5K routes
-      return !name.includes('5k') && !name.includes('chick');
+      if (name.includes('5k') || name.includes('chick')) return false;
+      
+      // Show both 1st and 2nd half to display the full marathon course
+      // They should render as one continuous route
+      return name.includes('1st half') || name.includes('2nd half');
     });
   }, [data]);
 
@@ -188,11 +192,8 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }, [onSpectatorSpotClick]);
 
   const handleMapLoad = useCallback((map: google.maps.Map) => {
-    console.log('[MAP] Map onLoad fired', { 
-      center: map.getCenter()?.toJSON(), 
-      zoom: map.getZoom(),
-      containerSize: map.getDiv()?.getBoundingClientRect()
-    });
+    const containerRect = map.getDiv()?.getBoundingClientRect();
+    console.log('[MAP] Map onLoad fired', `center: ${JSON.stringify(map.getCenter()?.toJSON())}, zoom: ${map.getZoom()}, containerSize: width: ${containerRect?.width}px, height: ${containerRect?.height}px`);
     setMapInstance(map);
     
     // CRITICAL: Force the map container div to have the correct height immediately
@@ -219,14 +220,32 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     const forceTileLoad = () => {
       if (map && map.getDiv()) {
         const rect = map.getDiv().getBoundingClientRect();
-        console.log('[MAP] Map container dimensions:', { width: rect.width, height: rect.height });
+        console.log('[MAP] Map container dimensions:', `width: ${rect.width}px, height: ${rect.height}px`);
         
         // If height is still wrong, force it again
         if (rect.height < 700 && containerHeight) {
           const mapDiv = map.getDiv();
           mapDiv.style.height = containerHeight;
           mapDiv.style.minHeight = '600px';
-          console.log('[MAP] Corrected map div height from', rect.height, 'to', containerHeight);
+          // Force all parent divs too
+          let parent = mapDiv.parentElement;
+          let depth = 0;
+          while (parent && depth < 5) {
+            if (parent.style) {
+              parent.style.height = containerHeight;
+              parent.style.minHeight = '600px';
+            }
+            parent = parent.parentElement;
+            depth++;
+          }
+          console.log(`[MAP] Corrected map div height from ${rect.height}px to ${containerHeight} (forced ${depth} parent levels)`);
+          
+          // Force a more aggressive resize
+          setTimeout(() => {
+            google.maps.event.trigger(map, 'resize');
+            const currentZoom = map.getZoom() || 13;
+            map.setZoom(currentZoom);
+          }, 50);
         }
         
         // Trigger resize
