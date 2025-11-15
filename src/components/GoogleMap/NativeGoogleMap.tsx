@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback } from 'react';
-import { GoogleMap, LoadScript, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
 import { GOOGLE_MAPS_API_KEY, DEFAULT_CENTER, DEFAULT_ZOOM, MAP_STYLES } from '../../config/googleMaps';
 import { useKMLData, KMLPlacemark } from '../../hooks/useKMLData';
 import { spectatorSpots } from '../../data/raceData';
@@ -274,17 +274,14 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
         />
       )}
 
-      <LoadScript
-        googleMapsApiKey={GOOGLE_MAPS_API_KEY}
-        loadingElement={<div className="h-full w-full flex items-center justify-center">Loading map...</div>}
-      >
-        <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        center={center}
-        zoom={zoom}
-        options={mapOptions}
-        onLoad={handleMapLoad}
-      >
+      <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={center}
+          zoom={zoom}
+          options={mapOptions}
+          onLoad={handleMapLoad}
+          onTilesLoaded={() => console.log('🎨 Map tiles loaded successfully')}
+        >
         {/* Render marathon routes only */}
         {marathonRoutes.map((route) => (
           <Polyline
@@ -498,11 +495,9 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = ({
           </div>
           <p className="text-sm">{error}</p>
         </div>
-          )}
+      )}
 
-          </LoadScript>
-
-          {/* Center on My Location button */}
+      {/* Center on My Location button */}
           {userLocation && (
             <button
               onClick={centerOnUserLocation}
