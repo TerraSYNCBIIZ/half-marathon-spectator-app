@@ -31,7 +31,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   const [locationWatchId, setLocationWatchId] = useState<number | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [containerHeight, setContainerHeight] = useState<string>('600px');
-  const [isContainerReady, setIsContainerReady] = useState(false);
 
   // Load KML data from the public URL
   const kmlUrl = 'https://www.google.com/maps/d/kml?mid=1M56qvN_r7OLIShRshLUAAuvcArSQEuo&forcekml=1';
@@ -95,14 +94,7 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
         const viewportHeight = window.innerHeight;
         const calculatedHeight = Math.max(viewportHeight - 64, 600); // Subtract nav height, min 600px
         setContainerHeight(`${calculatedHeight}px`);
-        
-        // Check if container has actual dimensions
-        if (mapContainerRef.current) {
-          const rect = mapContainerRef.current.getBoundingClientRect();
-          if (rect.height > 0 && rect.width > 0) {
-            setIsContainerReady(true);
-          }
-        }
+        console.log('[MAP] Container height set to:', `${calculatedHeight}px`);
       }
     };
 
@@ -115,7 +107,6 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
     // Also check after a short delay to catch any layout changes
     const timeoutId = setTimeout(() => {
       calculateHeight();
-      setIsContainerReady(true);
     }, 100);
 
     return () => {
@@ -176,20 +167,38 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
   }, [onSpectatorSpotClick]);
 
   const handleMapLoad = useCallback((map: google.maps.Map) => {
-    if (import.meta.env.DEV) {
-      console.log('🗺️ Map onLoad fired', { center: map.getCenter(), zoom: map.getZoom() });
-    }
+    console.log('[MAP] Map onLoad fired', { 
+      center: map.getCenter()?.toJSON(), 
+      zoom: map.getZoom(),
+      containerSize: map.getDiv()?.getBoundingClientRect()
+    });
     setMapInstance(map);
+    
+    // Force immediate resize to ensure tiles load
+    setTimeout(() => {
+      if (map && map.getDiv()) {
+        const rect = map.getDiv().getBoundingClientRect();
+        console.log('[MAP] Map container dimensions:', { width: rect.width, height: rect.height });
+        google.maps.event.trigger(map, 'resize');
+        const currentCenter = map.getCenter();
+        const currentZoom = map.getZoom();
+        if (currentCenter) {
+          map.setCenter(currentCenter);
+        }
+        if (currentZoom !== null && currentZoom !== undefined) {
+          map.setZoom(currentZoom);
+        }
+        console.log('[MAP] Initial resize triggered');
+      }
+    }, 50);
     
     // Multiple resize triggers with increasing delays to ensure tiles load in production
     // This addresses the common issue where tiles don't load due to timing differences
-    const resizeDelays = [100, 500, 1000, 2000];
+    const resizeDelays = [100, 300, 500, 1000, 2000];
     resizeDelays.forEach((delay) => {
       setTimeout(() => {
         if (map && map.getDiv()) {
-          if (import.meta.env.DEV) {
-            console.log(`🔄 Forcing map resize at ${delay}ms...`);
-          }
+          console.log(`[MAP] Resize triggered at ${delay}ms`);
           google.maps.event.trigger(map, 'resize');
           const currentCenter = map.getCenter();
           const currentZoom = map.getZoom();
@@ -429,24 +438,14 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
       <LoadScript 
         googleMapsApiKey={GOOGLE_MAPS_API_KEY}
         onLoad={() => {
-          if (import.meta.env.DEV) {
-            console.log('✅ LoadScript: Google Maps fully loaded');
-          }
-          // Only set loaded when container is ready
-          if (isContainerReady) {
-            setIsGoogleLoaded(true);
-          } else {
-            // Wait a bit for container to be ready
-            setTimeout(() => {
-              setIsGoogleLoaded(true);
-            }, 200);
-          }
+          console.log('[MAP] LoadScript: Google Maps fully loaded');
+          setIsGoogleLoaded(true);
         }}
         onError={(error) => {
-          console.error('❌ LoadScript error:', error);
+          console.error('[MAP] LoadScript error:', error);
         }}
       >
-        {isGoogleLoaded && isContainerReady && (
+        {isGoogleLoaded && (
           <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={center}
