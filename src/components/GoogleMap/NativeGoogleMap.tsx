@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback, memo } from 'react';
-import { GoogleMap, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, Polyline, InfoWindow } from '@react-google-maps/api';
 import { GOOGLE_MAPS_API_KEY, DEFAULT_CENTER, DEFAULT_ZOOM, MAP_STYLES } from '../../config/googleMaps';
 import { useKMLData, KMLPlacemark } from '../../hooks/useKMLData';
 import { spectatorSpots } from '../../data/raceData';
@@ -273,13 +273,14 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
         />
       )}
 
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        center={center}
-        zoom={zoom}
-        options={mapOptions}
-        onLoad={handleMapLoad}
-      >
+      <LoadScript googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={center}
+          zoom={zoom}
+          options={mapOptions}
+          onLoad={handleMapLoad}
+        >
         {/* Render marathon routes only */}
         {marathonRoutes.map((route) => (
           <Polyline
@@ -494,19 +495,20 @@ const NativeGoogleMap: React.FC<NativeGoogleMapProps> = memo(({
           <p className="text-sm">{error}</p>
         </div>
       )}
+      </LoadScript>
 
       {/* Center on My Location button */}
-          {userLocation && (
-            <button
-              onClick={centerOnUserLocation}
-              className="fixed bottom-24 right-4 z-[1001] bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-gray-200"
-              title="Center on my location"
-            >
-              <svg className="w-6 h-6 text-[#4285F4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="12" r="3" fill="currentColor"/>
-              </svg>
-            </button>
+      {userLocation && (
+        <button
+          onClick={centerOnUserLocation}
+          className="fixed bottom-24 right-4 z-[1001] bg-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 border border-gray-200"
+          title="Center on my location"
+        >
+          <svg className="w-6 h-6 text-[#4285F4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="3" fill="currentColor"/>
+          </svg>
+        </button>
       )}
     </>
   );

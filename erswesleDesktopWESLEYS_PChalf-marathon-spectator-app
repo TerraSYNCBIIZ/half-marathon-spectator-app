@@ -1,0 +1,5 @@
+[33m451237f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Force map tiles to load with resize trigger in production
+[33m3936c11[m Switch to useJsApiLoader for better production stability
+[33mb63f9a5[m Optimize map component with React.memo and useCallback to prevent re-renders
+[33m4fef729[m Fix map tiles: Move LoadScript to App level to prevent re-renders
+[33m8c4f412[m Add debugging logs and fix map container styling
